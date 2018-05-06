@@ -7,17 +7,17 @@ Summary: BEEES 2016 - 2017 First Lego League Regional Results at Yellow Springs 
 
 Here are the results from the  [Springboro
 Robotics](https://www.facebook.com/BoroBots) team BEEES  from
-the 2016 - 2017 First Lego League Regional at Yellow Springs High 
+the 2016 - 2017 First Lego League Regional at Yellow Springs High
 School.  Unfortunately our team didn't qualify for the district
 tournament but all the kids had fun this year (most important) and we
-had great success this year.  
+had great success this year.
 
-![Photo]({attach}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/imagejpeg_0.jpg)
+![Photo](https://dl.dropboxusercontent.com/s/ch0l8uf9hq7x9c9/imagejpeg_0.jpg)
 
-* [Score Board 01]({filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5604.JPG)
-* [Project]({filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5617.JPG)
-* [Core Values]({filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5616.JPG)
-* [Robot Design]({filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5615.JPG)
+* [Score Board 01](https://dl.dropboxusercontent.com/s/j09r60e41b8h5hi/IMG_5604.JPG)
+* [Project](https://dl.dropboxusercontent.com/s/2wqel9sxkzj4mf3/IMG_5617.JPG)
+* [Core Values](https://dl.dropboxusercontent.com/s/pjj6jjxl7nnynsy/IMG_5616.JPG)
+* [Robot Design](https://dl.dropboxusercontent.com/s/ftz3s0k96lig0wi/IMG_5615.JPG)
 
 
 
