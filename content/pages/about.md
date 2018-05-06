@@ -11,7 +11,7 @@ Wright State University, as well as my publicly released research papers, and
 various posts that cover my interests.  I work at the US Air Force Research Lab
 as a Computer Scientist in the Sensors Directorate.
 
-![Photo](https://drive.google.com/us?id=1LKvabq2imlUkpSw6TADAAI6aFHW_unLr)
+![Photo](https://drive.google.com/uc?id=1LKvabq2imlUkpSw6TADAAI6aFHW_unLr)
 
 My passion is open source software which I use a lot of at work and home.  My
 Son Elijah Rovito and I are involved in Boy Scouts with Troop 18 in Middletown,
