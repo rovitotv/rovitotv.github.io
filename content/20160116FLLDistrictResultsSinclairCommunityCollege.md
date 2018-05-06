@@ -13,7 +13,7 @@ College.  Unfortunately our team didn't qualify for the state tournament but all
 the kids had fun this year (most important) and we had great success this year
 by qualifying for districts as a a rookie team.
 
-![Photo](https://dl.dropboxusercontent.com/s/xnr780oa1sbxlrp/TeamPictureScaled.jpg)
+![Photo](https://dl.dropboxusercontent.com/s/88b5ewoki3hzcl7/TeamPictureScaledAll.jpg)
 
 * [Score Board 01](https://dl.dropboxusercontent.com/s/4pxl1dcuy7vxy7c/Scoreboard01.jpg)
 * [Score Board 02](https://dl.dropboxusercontent.com/s/5g1yyd87q1agijc/Scoreboard02.jpg)
