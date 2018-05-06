@@ -12,12 +12,12 @@ School.  Unfortunately our team didn't qualify for the district
 tournament but all the kids had fun this year (most important) and we
 had great success this year.
 
-![Photo](https://dl.dropboxusercontent.com/s/ch0l8uf9hq7x9c9/imagejpeg_0.jpg)
+![Photo](https://drive.google.com/uc?id=1EZeJ5cIpOTZTj3MCMT7K8fx0Y8WY_gbW)
 
-* [Score Board 01](https://dl.dropboxusercontent.com/s/j09r60e41b8h5hi/IMG_5604.JPG)
-* [Project](https://dl.dropboxusercontent.com/s/2wqel9sxkzj4mf3/IMG_5617.JPG)
-* [Core Values](https://dl.dropboxusercontent.com/s/pjj6jjxl7nnynsy/IMG_5616.JPG)
-* [Robot Design](https://dl.dropboxusercontent.com/s/ftz3s0k96lig0wi/IMG_5615.JPG)
+* [Score Board 01](https://drive.google.com/uc?id=1BmBFr4lhHSRkpsYAb2gqUZic4BUSRTRz)
+* [Project](https://drive.google.com/uc?id=13Y7f2P3pPwTmG5JzGUso8aeNt-NoEE55)
+* [Core Values](https://drive.google.com/uc?id=1Wx3_UFZJaeX-ysSdKpr0hpqxsjYm6wWD)
+* [Robot Design](https://drive.google.com/uc?id=1Wm5WYppEq0uedWMLF4Fj7MpjOeKPqJ2R)
 
 
 
