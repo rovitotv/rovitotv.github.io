@@ -4,14 +4,14 @@ Modified: 2015-12-25 12:00
 Authors: Todd V. Rovito
 Summary: About Todd V. Rovito
 
-![Photo](https://dl.dropboxusercontent.com/s/hunw4vdk3vrr10d/Rovito-Todd-8x10.jpg)
+![Photo](https://drive.google.com/file/d/1eD-pk0dqq6YN_qMPpi7DrL3SZR0gHn2W)
 
 This site is where Todd V. Rovito posts resources from classes I’ve taught at
 Wright State University, as well as my publicly released research papers, and
 various posts that cover my interests.  I work at the US Air Force Research Lab
 as a Computer Scientist in the Sensors Directorate.
 
-![Photo](https://dl.dropboxusercontent.com/s/39y0yv4fdi9v9dr/PICT5608-2.jpg)
+![Photo](https://drive.google.com/file/d/1LKvabq2imlUkpSw6TADAAI6aFHW_unLr)
 
 My passion is open source software which I use a lot of at work and home.  My
 Son Elijah Rovito and I are involved in Boy Scouts with Troop 18 in Middletown,
