@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>rovitotv's blog - Research</title><link href="/" rel="alternate"></link><link href="/feeds/research.atom.xml" rel="self"></link><id>/</id><updated>2017-03-11T12:00:00-05:00</updated><entry><title>Efficient Generation of Image Chips for Training Deep Learning Algorithms</title><link href="/efficient-generation-of-image-chips-for-training-deep-learning-algorithms.html" rel="alternate"></link><published>2017-03-11T12:00:00-05:00</published><updated>2017-03-11T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2017-03-11:/efficient-generation-of-image-chips-for-training-deep-learning-algorithms.html</id><summary type="html">&lt;p&gt;Abstract: Training deep convolutional networks for satellite or aerial image
+analysis often requires a large amount of training data. For a more robust
+algorithm, training data need to have variations not only in the background and
+target, but also radiometric variations in the image such as shadowing,
+illumination changes, atmospheric …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: Training deep convolutional networks for satellite or aerial image
+analysis often requires a large amount of training data. For a more robust
+algorithm, training data need to have variations not only in the background and
+target, but also radiometric variations in the image such as shadowing,
+illumination changes, atmospheric conditions, and imaging platforms with
+different collection geometry. Data augmentation is a commonly used approach to
+generating additional training data. However, this approach is often
+insufficient in accounting for real world changes in lighting, location or
+viewpoint outside of the collection geometry. Alternatively, image simulation
+can be an efficient way to augment training data that incorporates all these
+variations, such as changing backgrounds, that may be encountered in real data.
+The Digital Imaging and Remote Sensing Image Image Generation (DIRSIG) model is
+a tool that produces synthetic imagery using a suite of physics-based radiation
+propagation modules. DIRSIG can simulate images taken from different sensors
+with variation in collection geometry, spectral response, solar elevation and
+angle, atmospheric models, target, and background. For our research, we
+selected ground vehicles as target objects and incorporated the Simulation of
+Urban Mobility (SUMO) model into DIRSIG to generate scenes with vehicle
+movement. SUMO is a multi-modal traffic simulation tool that explicitly models
+vehicles that move through a given road network. Using the combination of
+DIRSIG and SUMO, we can quickly generate hundreds of image chips, with the
+target at the center with different backgrounds. The simulations generated
+chips with vehicles and helicopters as targets, and corresponding images
+without targets. Using parallel computing, 120,000 training images were
+generated in about an hour. Some preliminary results show an improvement in the
+deep learning algorithm when real image training data are augmented with the
+simulated images.&lt;/p&gt;
+&lt;p&gt;Links to paper:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/7usmxgawfrpxfat/2017SPIEPaperDraft.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title><link href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/electro-optical-synthetic-civilian-vehicle-data-domes.html</id><summary type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender, LuxRender,
+and Python) to generate a large data set to be used to train an object
+recognition system. The model produces camera position, camera attitude, and
+synthetic camera data that can be used for exploitation purposes. We focus on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender, LuxRender,
+and Python) to generate a large data set to be used to train an object
+recognition system. The model produces camera position, camera attitude, and
+synthetic camera data that can be used for exploitation purposes. We focus on
+electro-optical (EO) visible sensors to simplify the rendering but this work
+could be extended to use other rendering tools that support different
+modalities. The key idea of this paper is to provide an architecture to produce
+synthetic training data which is modular in design and constructed on open-
+source off-the-shelf software yielding a physics accurate virtual model of the
+object we want to recognize. For this paper the objects we are focused on are
+civilian vehicles. This architecture shows how leveraging existing open-source
+software allows for practical training of Electro-Optical object recognition
+algorithms.&lt;/p&gt;
+&lt;p&gt;Links to paper, presentation, and videos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/zdd0knt5dgtu65g/EOSynthDataDomes_submitted_to_PR_paper.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/aqe0aunepjy2r99/EODataDomesForPR_presentation.pdf?dl=0"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/6kk86echrw5fkja/light.avi?dl=0"&gt;Video showing light conditions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/36c4ohv95fso6hc/pos.avi?dl=0"&gt;Video showing positions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Antenna Aimpoint Integration For Staring Mode Surveillance</title><link href="/antenna-aimpoint-integration-for-staring-mode-surveillance.html" rel="alternate"></link><published>2008-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2008-07-01:/antenna-aimpoint-integration-for-staring-mode-surveillance.html</id><summary type="html">&lt;p&gt;Air to ground data link that was capable of 250 Mbits/sec&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a fun project! We created a wireless air to ground data link that was
+capable of 250 Mbits/sec. The same algorithm and math can be used for pointing
+sensors.&lt;/p&gt;
+&lt;p&gt;Abstract: Current persistent surveillance approaches require robust designs to
+maintain a fixed operational picture. In this paper, we design, develop, and
+demonstrate a feasible aimpoint solution. In the design, we derive the
+mathematical transformation requirements to show a system-level design. Using
+the transformations, we develop an operational methodology for real-time and
+robust aimpoint solution that includes a ground antenna, and an aircraft with a
+gimbal mounted camera and data link. Finally, we demonstrate a workable
+prototype with real-world results. The AIMS methodology supports communication
+timing constraints, a closed-loop feedback for error correction, and a succinct,
+efficient, and effective method for maintaining persistent surveillance.&lt;/p&gt;
+&lt;p&gt;Publicly released source code designed for 32 bit Linux RHEL 5. The code is
+simple and should be easily adaptable to any operating system and hardware.&lt;/p&gt;
+&lt;p&gt;Links to paper, presentation, and code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/zbxw02x2j7yzai5/InexpensiveAirToGroundDataLink.pdf?dl=0"&gt;Inexpensive Air To Ground Data Link&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/1tivpkvam69miua/Paper.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/che9wxx4v90hkzr/PlanePointPublicReleasedCode.zip?dl=0"&gt;Plane Point Public Released Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry></feed>

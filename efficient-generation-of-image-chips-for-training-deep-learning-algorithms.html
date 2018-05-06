@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <title>Efficient Generation of Image Chips for Training Deep Learning Algorithms</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="rovitotv's blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">rovitotv's blog </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/category/computing.html">Computing</a></li>
+                    <li><a href="/category/lego.html">Lego</a></li>
+                    <li class="active"><a href="/category/research.html">Research</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/efficient-generation-of-image-chips-for-training-deep-learning-algorithms.html" rel="bookmark"
+           title="Permalink to Efficient Generation of Image Chips for Training Deep Learning Algorithms">Efficient Generation of Image Chips for Training Deep Learning Algorithms</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-03-11T12:00:00-05:00">
+                Published: Sat 11 March 2017
+        </abbr>
+		<br />
+        <abbr class="modified" title="2017-03-11T12:00:00-05:00">
+                Updated: Sat 11 March 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/todd-v-rovito.html">Todd V. Rovito</a>
+        </address>
+<p>In <a href="/category/research.html">Research</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Abstract: Training deep convolutional networks for satellite or aerial image
+analysis often requires a large amount of training data. For a more robust
+algorithm, training data need to have variations not only in the background and
+target, but also radiometric variations in the image such as shadowing,
+illumination changes, atmospheric conditions, and imaging platforms with
+different collection geometry. Data augmentation is a commonly used approach to
+generating additional training data. However, this approach is often
+insufficient in accounting for real world changes in lighting, location or
+viewpoint outside of the collection geometry. Alternatively, image simulation
+can be an efficient way to augment training data that incorporates all these
+variations, such as changing backgrounds, that may be encountered in real data.
+The Digital Imaging and Remote Sensing Image Image Generation (DIRSIG) model is
+a tool that produces synthetic imagery using a suite of physics-based radiation
+propagation modules. DIRSIG can simulate images taken from different sensors
+with variation in collection geometry, spectral response, solar elevation and
+angle, atmospheric models, target, and background. For our research, we
+selected ground vehicles as target objects and incorporated the Simulation of
+Urban Mobility (SUMO) model into DIRSIG to generate scenes with vehicle
+movement. SUMO is a multi-modal traffic simulation tool that explicitly models
+vehicles that move through a given road network. Using the combination of
+DIRSIG and SUMO, we can quickly generate hundreds of image chips, with the
+target at the center with different backgrounds. The simulations generated
+chips with vehicles and helicopters as targets, and corresponding images
+without targets. Using parallel computing, 120,000 training images were
+generated in about an hour. Some preliminary results show an improvement in the
+deep learning algorithm when real image training data are augmented with the
+simulated images.</p>
+<p>Links to paper:</p>
+<ul>
+<li><a href="https://www.dropbox.com/s/7usmxgawfrpxfat/2017SPIEPaperDraft.pdf?dl=0">Paper</a></li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.raspberrypi.org">Raspberry Pi</a></li>
+                            <li><a href="http://teamafrl.afciviliancareers.com">AFRL</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://twitter.com/rovitotv">Twitter</a></li>
+                            <li><a href="https://github.com/rovitotv">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UCBl6ggrOjOtyoyXsdNvKouA">YouTube</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

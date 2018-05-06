@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>rovitotv's blog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-01-27T22:57:00-05:00</updated><entry><title>Photos from iPhone are flipped on Website</title><link href="/photos-from-iphone-are-flipped-on-website.html" rel="alternate"></link><published>2018-01-27T22:57:00-05:00</published><updated>2018-01-27T22:57:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-01-27:/photos-from-iphone-are-flipped-on-website.html</id><summary type="html">&lt;p&gt;Photos taken with my iPhone were appearing upside down on my website&lt;/p&gt;</summary><content type="html">&lt;p&gt;This has been a frustrating problem for several months with my Pelican
+powered Raspberry Pi web server.  I actually thought maybe I was crazy 
+because I would visit my website on my computer and everything looked
+fine but then if I went to my website with iPhone/iPad some of the 
+pictures were upside down.  I tried using Image Magick's convert 
+command to rotate the images and that didn't fix the problem.  Finally
+tonight I thought I would really dive in and focus trying to figure out
+what was going on.  The first thing I tried was different Pelican themes,
+maybe a responsive theme would fix my issue?  I could not get the other
+themes to work so I started really looking at the images and the exif
+data inside of the JPEG images.  After some searching around the web
+I discovered that other people had this problem.  Basically if you
+take photos with your iPhone with the volume buttons oriented up
+that is really upside down.  Instead of rotating the images the iPhone
+puts the information into the Exif headers of the JPEG image.  But then
+it behaves differently for web browsers (both MacOS and Windows) and
+iPhone/iPad.  On MacOS and Windows the images had to be rotated with
+the convert and they displayed fine.  But then on iPhone/iPad they
+would display upside down after the convert program was used to rotate
+them.  Finally I was able to assemble a Python program to rotate the
+image if orientation is set then to strip out all the exif data for
+presentation on the web.  Here is the program:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;PIL&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ExifTags&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argparse&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ArgumentParser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;-f&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;--filename&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;store&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_args&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;processing file: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;image&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;# this code below will rotate the image if it needs to be rotated&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;orientation&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;ExifTags&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TAGS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ExifTags&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TAGS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;orientation&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Orientation&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;break&lt;/span&gt;
+    &lt;span class="n"&gt;exif&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_getexif&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;exif&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;orientation&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rotate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;180&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;expand&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rotated image 180&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;exif&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;orientation&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rotate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;270&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;expand&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rotated image 270&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;exif&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;orientation&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rotate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;expand&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;rotated image 90&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# now we need to strip out the exif all together by saving&lt;/span&gt;
+    &lt;span class="c1"&gt;# to a new image without exif&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getdata&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+    &lt;span class="n"&gt;image_without_exif&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;image_without_exif&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;putdata&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;image_without_exif&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then be careful that you clear your web cache so the same
+upside down image does not reload.  Hopefully this will save
+you some time!&lt;/p&gt;</content></entry><entry><title>2017 - 2018 First Lego League District Results for Steve</title><link href="/2017-2018-first-lego-league-district-results-for-steve.html" rel="alternate"></link><published>2018-01-07T19:45:00-05:00</published><updated>2018-01-07T19:45:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-01-07:/2017-2018-first-lego-league-district-results-for-steve.html</id><summary type="html">&lt;p&gt;Steve 2017 - 2018 First Lego League District Results at Wright State University&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here are the results from the  &lt;a href="https://www.facebook.com/BoroBots"&gt;Springboro
+Robotics&lt;/a&gt; team Steve  from
+the 2017 - 2018 First Lego League Districts at Wright State 
+University.  Unfortunately our team did not qualify for the state
+tournament, all the kids had fun this year (most important) and we
+had great success this year.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/20180107FLLDistrictsWSU/Team_Photo_2_scaled.JPG"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The team earned a maximum of 90 points on the robot game&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Robot_Design.JPG"&gt;Robot Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Project.JPG"&gt;Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Core_Values.JPG"&gt;Core Values&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Practice_Robot_Run.JPG"&gt;Practice Robot Run&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Robot_Run_1.JPG"&gt;Robot Run 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Robot_Run_2.JPG"&gt;Robot Run 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Robot_Run_3.JPG"&gt;Robot Run 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Team_Photo_1.JPG"&gt;Team Photo 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Team_Photo_2.JPG"&gt;Team Photo 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20180107FLLDistrictsWSU/Panorama.JPG"&gt;Panorama of Tournament&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>2017 - 2018 First Lego League Regional Results for Steve</title><link href="/2017-2018-first-lego-league-regional-results-for-steve.html" rel="alternate"></link><published>2017-12-09T20:45:00-05:00</published><updated>2017-12-09T20:45:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2017-12-09:/2017-2018-first-lego-league-regional-results-for-steve.html</id><summary type="html">&lt;p&gt;Steve 2017 - 2018 First Lego League Regional Results at Emmerson&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here are the results from the  &lt;a href="https://www.facebook.com/BoroBots"&gt;Springboro
+Robotics&lt;/a&gt; team Steve  from
+the 2017 - 2018 First Lego League Regional at Emmersion 
+School.  Fortunately our team did qualify for the district
+tournament, all the kids had fun this year (most important) and we
+had great success this year.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/20171209FllRegionalQualifierEmmerson/team_photo.jpeg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The team earned 7th place on the robot game and earned a total of 30 points&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20171209FllRegionalQualifierEmmerson/judge_01.jpeg"&gt;Robot Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20171209FllRegionalQualifierEmmerson/judge_02.jpeg"&gt;Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20171209FllRegionalQualifierEmmerson/judge_03.jpeg"&gt;Core Values&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Efficient Generation of Image Chips for Training Deep Learning Algorithms</title><link href="/efficient-generation-of-image-chips-for-training-deep-learning-algorithms.html" rel="alternate"></link><published>2017-03-11T12:00:00-05:00</published><updated>2017-03-11T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2017-03-11:/efficient-generation-of-image-chips-for-training-deep-learning-algorithms.html</id><summary type="html">&lt;p&gt;Abstract: Training deep convolutional networks for satellite or aerial image
+analysis often requires a large amount of training data. For a more robust
+algorithm, training data need to have variations not only in the background and
+target, but also radiometric variations in the image such as shadowing,
+illumination changes, atmospheric …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: Training deep convolutional networks for satellite or aerial image
+analysis often requires a large amount of training data. For a more robust
+algorithm, training data need to have variations not only in the background and
+target, but also radiometric variations in the image such as shadowing,
+illumination changes, atmospheric conditions, and imaging platforms with
+different collection geometry. Data augmentation is a commonly used approach to
+generating additional training data. However, this approach is often
+insufficient in accounting for real world changes in lighting, location or
+viewpoint outside of the collection geometry. Alternatively, image simulation
+can be an efficient way to augment training data that incorporates all these
+variations, such as changing backgrounds, that may be encountered in real data.
+The Digital Imaging and Remote Sensing Image Image Generation (DIRSIG) model is
+a tool that produces synthetic imagery using a suite of physics-based radiation
+propagation modules. DIRSIG can simulate images taken from different sensors
+with variation in collection geometry, spectral response, solar elevation and
+angle, atmospheric models, target, and background. For our research, we
+selected ground vehicles as target objects and incorporated the Simulation of
+Urban Mobility (SUMO) model into DIRSIG to generate scenes with vehicle
+movement. SUMO is a multi-modal traffic simulation tool that explicitly models
+vehicles that move through a given road network. Using the combination of
+DIRSIG and SUMO, we can quickly generate hundreds of image chips, with the
+target at the center with different backgrounds. The simulations generated
+chips with vehicles and helicopters as targets, and corresponding images
+without targets. Using parallel computing, 120,000 training images were
+generated in about an hour. Some preliminary results show an improvement in the
+deep learning algorithm when real image training data are augmented with the
+simulated images.&lt;/p&gt;
+&lt;p&gt;Links to paper:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/7usmxgawfrpxfat/2017SPIEPaperDraft.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>2016 - 2017 First Lego League District Results for BEEES</title><link href="/2016-2017-first-lego-league-district-results-for-beees.html" rel="alternate"></link><published>2016-12-11T22:32:00-05:00</published><updated>2016-12-11T22:32:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2016-12-11:/2016-2017-first-lego-league-district-results-for-beees.html</id><summary type="html">&lt;p&gt;BEEES 2016 - 2017 First Lego League Regional Results at Yellow Springs High School&lt;/p&gt;</summary><content type="html">&lt;p&gt;Here are the results from the  &lt;a href="https://www.facebook.com/BoroBots"&gt;Springboro
+Robotics&lt;/a&gt; team BEEES  from
+the 2016 - 2017 First Lego League Regional at Yellow Springs High 
+School.  Unfortunately our team didn't qualify for the district
+tournament but all the kids had fun this year (most important) and we
+had great success this year.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/imagejpeg_0.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5604.JPG"&gt;Score Board 01&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5617.JPG"&gt;Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5616.JPG"&gt;Core Values&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20161211FllRegionalResultsYellowSpringsHS/IMG_5615.JPG"&gt;Robot Design&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>2015 - 2016 First Lego League District Results for The Lego Creepers</title><link href="/2015-2016-first-lego-league-district-results-for-the-lego-creepers.html" rel="alternate"></link><published>2016-01-16T22:06:00-05:00</published><updated>2016-01-16T22:06:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2016-01-16:/2015-2016-first-lego-league-district-results-for-the-lego-creepers.html</id><summary type="html">&lt;p&gt;Lego Creepers 2015 - 2016 First Lego League District Results at&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sinclair Community College.&lt;/p&gt;
+&lt;p&gt;Here are the results from the  &lt;a href="https://www.facebook.com/BoroBots"&gt;Springboro
+Robotics&lt;/a&gt; rookie team Lego  Creepers  from
+the 2015 - 2016 First Lego League Districts tournament at Sinclair  Community
+College.  Unfortunately our team didn't qualify for the state tournament but all
+the kids had fun this year (most important) and we had great success this year
+by qualifying for districts as a a rookie team.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/TeamPictureScaledAll.jpg"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/Scoreboard01.jpg"&gt;Score Board 01&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/Scoreboard02.jpg"&gt;Score Board 02&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/Scoreboard03.jpg"&gt;Score Board 03&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/Scoreboard04.jpg"&gt;Score Board 04&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/Project.jpg"&gt;Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/CoreValues.jpg"&gt;Core Values&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/20160116FLLDistrictResultsSinclairCommunityCollege/RobotDesign.jpg"&gt;Robot Design&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Eli Created a Lego Raspberry PI Case for New Raspberry PI 2</title><link href="/eli-created-a-lego-raspberry-pi-case-for-new-raspberry-pi-2.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/eli-created-a-lego-raspberry-pi-case-for-new-raspberry-pi-2.html</id><summary type="html">&lt;p&gt;Eli created a inexpensive case for the raspberry PI 2 from Lego&lt;/p&gt;</summary><content type="html">&lt;p&gt;Save some money, build your Raspberry Pi case out of Legos.  Even better have
+your kid build the case for you.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/EliCreatedALegoRaspberryPICase/RaspberryPiLegoCaseScaled.jpg"&gt;&lt;/p&gt;</content></entry><entry><title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title><link href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/electro-optical-synthetic-civilian-vehicle-data-domes.html</id><summary type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender, LuxRender,
+and Python) to generate a large data set to be used to train an object
+recognition system. The model produces camera position, camera attitude, and
+synthetic camera data that can be used for exploitation purposes. We focus on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender, LuxRender,
+and Python) to generate a large data set to be used to train an object
+recognition system. The model produces camera position, camera attitude, and
+synthetic camera data that can be used for exploitation purposes. We focus on
+electro-optical (EO) visible sensors to simplify the rendering but this work
+could be extended to use other rendering tools that support different
+modalities. The key idea of this paper is to provide an architecture to produce
+synthetic training data which is modular in design and constructed on open-
+source off-the-shelf software yielding a physics accurate virtual model of the
+object we want to recognize. For this paper the objects we are focused on are
+civilian vehicles. This architecture shows how leveraging existing open-source
+software allows for practical training of Electro-Optical object recognition
+algorithms.&lt;/p&gt;
+&lt;p&gt;Links to paper, presentation, and videos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/zdd0knt5dgtu65g/EOSynthDataDomes_submitted_to_PR_paper.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/aqe0aunepjy2r99/EODataDomesForPR_presentation.pdf?dl=0"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/6kk86echrw5fkja/light.avi?dl=0"&gt;Video showing light conditions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/36c4ohv95fso6hc/pos.avi?dl=0"&gt;Video showing positions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Antenna Aimpoint Integration For Staring Mode Surveillance</title><link href="/antenna-aimpoint-integration-for-staring-mode-surveillance.html" rel="alternate"></link><published>2008-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2008-07-01:/antenna-aimpoint-integration-for-staring-mode-surveillance.html</id><summary type="html">&lt;p&gt;Air to ground data link that was capable of 250 Mbits/sec&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a fun project! We created a wireless air to ground data link that was
+capable of 250 Mbits/sec. The same algorithm and math can be used for pointing
+sensors.&lt;/p&gt;
+&lt;p&gt;Abstract: Current persistent surveillance approaches require robust designs to
+maintain a fixed operational picture. In this paper, we design, develop, and
+demonstrate a feasible aimpoint solution. In the design, we derive the
+mathematical transformation requirements to show a system-level design. Using
+the transformations, we develop an operational methodology for real-time and
+robust aimpoint solution that includes a ground antenna, and an aircraft with a
+gimbal mounted camera and data link. Finally, we demonstrate a workable
+prototype with real-world results. The AIMS methodology supports communication
+timing constraints, a closed-loop feedback for error correction, and a succinct,
+efficient, and effective method for maintaining persistent surveillance.&lt;/p&gt;
+&lt;p&gt;Publicly released source code designed for 32 bit Linux RHEL 5. The code is
+simple and should be easily adaptable to any operating system and hardware.&lt;/p&gt;
+&lt;p&gt;Links to paper, presentation, and code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/zbxw02x2j7yzai5/InexpensiveAirToGroundDataLink.pdf?dl=0"&gt;Inexpensive Air To Ground Data Link&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/1tivpkvam69miua/Paper.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.dropbox.com/s/che9wxx4v90hkzr/PlanePointPublicReleasedCode.zip?dl=0"&gt;Plane Point Public Released Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry></feed>
