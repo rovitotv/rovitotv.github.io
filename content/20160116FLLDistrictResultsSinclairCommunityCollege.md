@@ -13,15 +13,15 @@ College.  Unfortunately our team didn't qualify for the state tournament but all
 the kids had fun this year (most important) and we had great success this year
 by qualifying for districts as a a rookie team.
 
-![Photo](https://dl.dropboxusercontent.com/s/88b5ewoki3hzcl7/TeamPictureScaledAll.jpg)
+![Photo](https://drive.google.com/uc?id=1RfEAccXMBquNQZuVM2FuhpNK84sroIZs)
 
-* [Score Board 01](https://dl.dropboxusercontent.com/s/4pxl1dcuy7vxy7c/Scoreboard01.jpg)
-* [Score Board 02](https://dl.dropboxusercontent.com/s/5g1yyd87q1agijc/Scoreboard02.jpg)
-* [Score Board 03](https://dl.dropboxusercontent.com/s/myswqn72okgx1qm/Scoreboard03.jpg)
-* [Score Board 04](https://dl.dropboxusercontent.com/s/75z3if89yqxxuxe/Scoreboard04.jpg)
-* [Project](https://dl.dropboxusercontent.com/s/rcesmdung65va9g/Project.jpg)
-* [Core Values](https://dl.dropboxusercontent.com/s/wals3iwo0498pda/CoreValues.jpg)
-* [Robot Design](https://dl.dropboxusercontent.com/s/rok9dejajowpooj/RobotDesign.jpg)
+* [Score Board 01](https://drive.google.com/uc?id=1c_VOC2TIUOSmJROHNaLYRVl66MVdzCRD)
+* [Score Board 02](https://drive.google.com/uc?id=1SFvQrjs8lfMssA5vxQhwaUJtwgKZR5mK)
+* [Score Board 03](https://drive.google.com/uc?id=1tgIGt6TzJC49m4X7Y-oIoHMix2DZ6GMQ)
+* [Score Board 04](https://drive.google.com/uc?id=1JTGxtQfdDO3t0UrBRvJngTCQ91-6Tx77)
+* [Project](https://drive.google.com/uc?id=1spb1iQeFO2QOabGToR4UcezRAqWEJyif)
+* [Core Values](https://drive.google.com/uc?id=1KUMc1TdAqOxh46-H2NLjA86-gx6vUgQu)
+* [Robot Design](https://drive.google.com/uc?id=1TKPS5RAMPY1Doko4RoguRF93VunFXAA0)
 
 
 
