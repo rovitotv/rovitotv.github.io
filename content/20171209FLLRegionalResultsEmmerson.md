@@ -12,12 +12,13 @@ School.  Fortunately our team did qualify for the district
 tournament, all the kids had fun this year (most important) and we
 had great success this year.
 
-![Photo](https://dl.dropboxusercontent.com/s/q6l1wfefog26w77/team_photo.jpeg)
+![Photo](https://drive.google.com/uc?id=1PVkUckBayXAVGafaZvFR4jBIQAs1zGQz)
 
 * The team earned 7th place on the robot game and earned a total of 30 points
-* [Robot Design](https://dl.dropboxusercontent.com/s/jqp9q7jwhbiatfl/judge_01.jpeg)
-* [Project](https://dl.dropboxusercontent.com/s/64p4p9657hw2qhy/judge_02.jpeg)
-* [Core Values](https://dl.dropboxusercontent.com/s/trv5jyndvo420mz/judge_03.jpeg)
+* [Robot Design](https://drive.google.com/uc?id=14zKsLUHnM3RHzompEfb-QhcbbUYu0h3p)
+* [Project](https://drive.google.com/uc?id=1PodXCWSnBQhogk8ojGhRmB_iLeH8ZEUd)
+* [Core Values](https://drive.google.com/uc?id=15htUc6qNBC94No_hB95wKOXlK3sDDNwg)
+
 
 
 
