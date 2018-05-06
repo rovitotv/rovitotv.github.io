@@ -1,0 +1,4 @@
+*.pyc
+output/
+content/MediaFiles/
+__pycache__
