@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>rovitotv's blog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-01-27T22:57:00-05:00</updated><entry><title>Photos from iPhone are flipped on Website</title><link href="/photos-from-iphone-are-flipped-on-website.html" rel="alternate"></link><published>2018-01-27T22:57:00-05:00</published><updated>2018-01-27T22:57:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-01-27:/photos-from-iphone-are-flipped-on-website.html</id><summary type="html">&lt;p&gt;Photos taken with my iPhone were appearing upside down on my website&lt;/p&gt;</summary><content type="html">&lt;p&gt;This has been a frustrating problem for several months with my Pelican
+<feed xmlns="http://www.w3.org/2005/Atom"><title>rovitotv's blog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-05-04T12:00:00-04:00</updated><entry><title>rovitotv.org is switching to github pages</title><link href="/rovitotvorg-is-switching-to-github-pages.html" rel="alternate"></link><published>2018-05-04T12:00:00-04:00</published><updated>2018-05-04T12:00:00-04:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-05-04:/rovitotvorg-is-switching-to-github-pages.html</id><summary type="html">&lt;p&gt;Major updates at rovitotv.org, switching to github pages&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have been running rovitotv.org blog on a Rapberry Pi for
+a while and it has been working with no problems.  But I wanted
+to try out github pages and thought moving the site over would
+allow me to learn.  So over the weekend I moved the site over
+and everything converted without a hitch.  The site is still
+powered by Pelican static blog software.  As an additional
+side effect I should see improved uptime.  The images, pdf files,
+and zip files are hosted from my Google Drive.  My Google Drive
+is upgrade to 100 GB because I purchased a Chromebook what a deal.
+I plan on blogging about my Chromebook in the near future.&lt;/p&gt;
+&lt;p&gt;In some ways I will miss my Raspberry Pi but GitHub pages is
+free, I like the GitHub workflow, it increased my GitHub
+contribution count, and it is carefree.  The only problem
+I ran into was how to work with large images, pdf files,
+and zip files with git.  When the repository grew a few
+mega bytes in size github.com would time out when pushing
+changes.  I got around this by hosting the images, pdf files,
+and zip files on Google Drive.  Now the website contains
+nothing but text.  Another option is to use git-lfs but
+using Google Drive didn't require additional software to be
+installed. I recommend checking out github pages + Google
+Drive + Pelican for your website.&lt;/p&gt;</content></entry><entry><title>Photos from iPhone are flipped on Website</title><link href="/photos-from-iphone-are-flipped-on-website.html" rel="alternate"></link><published>2018-01-27T22:57:00-05:00</published><updated>2018-01-27T22:57:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-01-27:/photos-from-iphone-are-flipped-on-website.html</id><summary type="html">&lt;p&gt;Photos taken with my iPhone were appearing upside down on my website&lt;/p&gt;</summary><content type="html">&lt;p&gt;This has been a frustrating problem for several months with my Pelican
 powered Raspberry Pi web server.  I actually thought maybe I was crazy 
 because I would visit my website on my computer and everything looked
 fine but then if I went to my website with iPhone/iPad some of the 
