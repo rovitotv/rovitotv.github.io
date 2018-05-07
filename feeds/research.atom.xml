@@ -55,11 +55,11 @@ algorithms.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1aZg3AL258UMy6o18o2iNkd_yvBvG8j-I"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1BaDFeUhiOoxY6vKNd8CUvsUpdMJ7j74x"&gt;Video showing light conditions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1tYmoKI2f4L34fEPD14ARx0XHCL2Xyakf"&gt;Video showing positions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Image Processing in the Amazon Cloud with Enthought Python</title><link href="/image-processing-in-the-amazon-cloud-with-enthought-python.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/image-processing-in-the-amazon-cloud-with-enthought-python.html</id><summary type="html">&lt;p&gt;Abstract – Key idea of this work is to provide a open source frame work for
+&lt;/ul&gt;</content></entry><entry><title>Image Processing in the Amazon Cloud with Enthought Python</title><link href="/image-processing-in-the-amazon-cloud-with-enthought-python.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/image-processing-in-the-amazon-cloud-with-enthought-python.html</id><summary type="html">&lt;p&gt;Abstract: Key idea of this work is to provide a open source frame work for
 image processing that can be run on different parallel processing platforms.
 Parallel processing is necessary because sensors are producing more data at
 faster rates. This presentation looks at wide area motion imagery (WAMI) data
-from …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract – Key idea of this work is to provide a open source frame work for
+from …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: Key idea of this work is to provide a open source frame work for
 image processing that can be run on different parallel processing platforms.
 Parallel processing is necessary because sensors are producing more data at
 faster rates. This presentation looks at wide area motion imagery (WAMI) data
@@ -72,9 +72,9 @@ via built-in ZeroMQ. This process can be automated to produce large amounts of
 data with minimal human effort.&lt;/p&gt;
 &lt;p&gt;Links to paper and sample code:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/ImageProcessingInTheAmazonCloudwithEnthoughtPythonDist.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/BDFrameEqualization.py"&gt;Frame Equalization (python code)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/BDFrameEqualizationServer.py"&gt;Frame Equalization Server (python code)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1ikj8W3poF0MxozazRzCriBdx1RRYHlm8"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1Ss5Mi-9KnDd4NLyKOgPXJHr1tKkKVels"&gt;Frame Equalization (python code)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1UKjiGHkCDuoYBA9MfChwusUKw460rKpi"&gt;Frame Equalization Server (python code)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model version 2 for ATR Center</title><link href="/physics-accurate-layered-sensing-model-version-2-for-atr-center.html" rel="alternate"></link><published>2011-08-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-08-01:/physics-accurate-layered-sensing-model-version-2-for-atr-center.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software version 2&lt;/p&gt;</summary><content type="html">&lt;p&gt;The main focus of this project was to provide an architecture for layered
 sensing simulation. It is modular in design and constructed on open-source-off-
 the-shelf-software (Blender, LuxRender, Python, OpenCV, and SUMO).&lt;/p&gt;

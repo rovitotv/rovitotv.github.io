@@ -451,7 +451,7 @@ by qualifying for districts as a a rookie team.&lt;/p&gt;
 your kid build the case for you.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Photo" src="https://drive.google.com/uc?id=1LzyXW65oE1CtT572hHjr18eKHKOvfutr"&gt;&lt;/p&gt;</content></entry><entry><title>Getting Ready for the USAF Maker Fest</title><link href="/getting-ready-for-the-usaf-maker-fest.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/getting-ready-for-the-usaf-maker-fest.html</id><summary type="html">&lt;p&gt;Elijah and I went to Tec^Edge and particpated in the Maker Fest&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am super excited for the USAF Maker Fest.  Going to show off my Raspberry Pi
 with web server/email server.  The directions are found on
-(GitHub)[https://github.com/rovitotv/DigitalFreedomWithRaspberryPI].  Here is a
+&lt;a href="https://github.com/rovitotv/DigitalFreedomWithRaspberryPI"&gt;GitHub&lt;/a&gt;.  Here is a
 picture of the front door.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Photo" src="https://drive.google.com/uc?id=1-neYPeECa6fymFbC_wpFAaSwSQNfZ1C5"&gt;&lt;/p&gt;</content></entry><entry><title>It has Been A While</title><link href="/it-has-been-a-while.html" rel="alternate"></link><published>2015-02-21T12:00:00-05:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-02-21:/it-has-been-a-while.html</id><summary type="html">&lt;p&gt;Upgrade blog to Raspberry PI 2&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have not posted to the blog for a while but I am still here! Upgraded my blog
 to a new Raspberry Pi 2 for quad core 900 Mhz performance. Hopefully I got the
@@ -493,11 +493,11 @@ algorithms.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1aZg3AL258UMy6o18o2iNkd_yvBvG8j-I"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1BaDFeUhiOoxY6vKNd8CUvsUpdMJ7j74x"&gt;Video showing light conditions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1tYmoKI2f4L34fEPD14ARx0XHCL2Xyakf"&gt;Video showing positions&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Image Processing in the Amazon Cloud with Enthought Python</title><link href="/image-processing-in-the-amazon-cloud-with-enthought-python.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/image-processing-in-the-amazon-cloud-with-enthought-python.html</id><summary type="html">&lt;p&gt;Abstract – Key idea of this work is to provide a open source frame work for
+&lt;/ul&gt;</content></entry><entry><title>Image Processing in the Amazon Cloud with Enthought Python</title><link href="/image-processing-in-the-amazon-cloud-with-enthought-python.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/image-processing-in-the-amazon-cloud-with-enthought-python.html</id><summary type="html">&lt;p&gt;Abstract: Key idea of this work is to provide a open source frame work for
 image processing that can be run on different parallel processing platforms.
 Parallel processing is necessary because sensors are producing more data at
 faster rates. This presentation looks at wide area motion imagery (WAMI) data
-from …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract – Key idea of this work is to provide a open source frame work for
+from …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: Key idea of this work is to provide a open source frame work for
 image processing that can be run on different parallel processing platforms.
 Parallel processing is necessary because sensors are producing more data at
 faster rates. This presentation looks at wide area motion imagery (WAMI) data
@@ -510,9 +510,9 @@ via built-in ZeroMQ. This process can be automated to produce large amounts of
 data with minimal human effort.&lt;/p&gt;
 &lt;p&gt;Links to paper and sample code:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/ImageProcessingInTheAmazonCloudwithEnthoughtPythonDist.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/BDFrameEqualization.py"&gt;Frame Equalization (python code)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/BDFrameEqualizationServer.py"&gt;Frame Equalization Server (python code)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1ikj8W3poF0MxozazRzCriBdx1RRYHlm8"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1Ss5Mi-9KnDd4NLyKOgPXJHr1tKkKVels"&gt;Frame Equalization (python code)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1UKjiGHkCDuoYBA9MfChwusUKw460rKpi"&gt;Frame Equalization Server (python code)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>My Coach and Friend Mike "Noodles" Nocheck Died 6/22/2012</title><link href="/my-coach-and-friend-mike-noodles-nocheck-died-6222012.html" rel="alternate"></link><published>2012-06-26T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-06-26:/my-coach-and-friend-mike-noodles-nocheck-died-6222012.html</id><summary type="html">&lt;p&gt;When I was younger I was an avid swimmer. My Coach and Friend Mike “Noodles”
 Nocheck died 6/22/2012 below is an article I found in my archives from the early
 1990’s about Noodles and his “retirement” after 16 years at Gamble Nippert YMCA.

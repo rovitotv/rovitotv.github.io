@@ -306,7 +306,7 @@ on the Raspberry Pi.  Performance seems to be decent even over wi-fi. &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;umount /Users/rovitotv/temp/pi
 &lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>Getting Ready for the USAF Maker Fest</title><link href="/getting-ready-for-the-usaf-maker-fest.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/getting-ready-for-the-usaf-maker-fest.html</id><summary type="html">&lt;p&gt;Elijah and I went to Tec^Edge and particpated in the Maker Fest&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am super excited for the USAF Maker Fest.  Going to show off my Raspberry Pi
 with web server/email server.  The directions are found on
-(GitHub)[https://github.com/rovitotv/DigitalFreedomWithRaspberryPI].  Here is a
+&lt;a href="https://github.com/rovitotv/DigitalFreedomWithRaspberryPI"&gt;GitHub&lt;/a&gt;.  Here is a
 picture of the front door.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Photo" src="https://drive.google.com/uc?id=1-neYPeECa6fymFbC_wpFAaSwSQNfZ1C5"&gt;&lt;/p&gt;</content></entry><entry><title>It has Been A While</title><link href="/it-has-been-a-while.html" rel="alternate"></link><published>2015-02-21T12:00:00-05:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-02-21:/it-has-been-a-while.html</id><summary type="html">&lt;p&gt;Upgrade blog to Raspberry PI 2&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have not posted to the blog for a while but I am still here! Upgraded my blog
 to a new Raspberry Pi 2 for quad core 900 Mhz performance. Hopefully I got the
