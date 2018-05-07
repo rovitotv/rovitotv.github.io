@@ -91,8 +91,8 @@ Projections.&lt;/p&gt;
 &lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/MultiCar.mp4"&gt;Multi-car video&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/Sadr_City_in Blender.mp4"&gt;Sadr City in Blender video&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/PursuerWith5Streams.mp4"&gt;Pursuer with five streams video&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model</title><link href="/physics-accurate-layered-sensing-model.html" rel="alternate"></link><published>2011-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-07-01:/physics-accurate-layered-sensing-model.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender © [1],
-LuxRender © [2], Open CV [3], SUMO [4], and Python © [5]) to build an image
+&lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model</title><link href="/physics-accurate-layered-sensing-model.html" rel="alternate"></link><published>2011-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-07-01:/physics-accurate-layered-sensing-model.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: This paper will look at using open source tools (Blender [1],
+LuxRender [2], Open CV [3], SUMO [4], and Python [5]) to build an image
 processing model for exploring combinations of sensors/platforms for any given
 image resolution. The model produces camera position, camera attitude, and
 synthetic camera data that can be used for exploitation purposes. We focus on
@@ -113,13 +113,13 @@ real-world applications. In this paper we demonstrate our model output is
 automatically exploitable by using generated data with an innovative geo-
 registration algorithm and real time display.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/PhysicsAccurateLayeredSensingModelFinal.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/NAECONPresentation.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/00_Blender_Camera_Animation.mp4"&gt;Blender Camera Animation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/01_SUMO.mp4"&gt;SUMO Animation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/02_Sadr_City_Car_Animation_Wire.mp4"&gt;Sadr City Car Animation Wire Frame&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/04_Building_Camera.mp4"&gt;Building Camera Animation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/05_SyntheticNITFInPursuer3.mp4"&gt;Synthetic NITF in Pursuer Animation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1QwYS7jOVuKRAbV4BbpaCxrw4BHV-fi56"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1-HbP96RIicmjOk2LXBh43HsmfFPbSk5Y"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=13Z__K5z0GDeK3CycJ1_dGINmTfV2Usj5"&gt;Blender Camera Animation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1Ghg715obdFkE67dedvqkzrcejEYFFzeB"&gt;SUMO Animation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1MSfBBnPeviGvULip6PSwg8iPo6TzLegx"&gt;Sadr City Car Animation Wire Frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1WWTkWZya8_-yEPSjyPSSSDUa7YUq63Jr"&gt;Building Camera Animation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=15iIPhWcxeMPjmdeWH9gJFKkB7dh-lux6"&gt;Synthetic NITF in Pursuer Animation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Open Source Based Architecture For Layered Sensing Applications</title><link href="/open-source-based-architecture-for-layered-sensing-applications.html" rel="alternate"></link><published>2010-04-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2010-04-01:/open-source-based-architecture-for-layered-sensing-applications.html</id><summary type="html">&lt;p&gt;Using open source tools is an example of layered sensing applications&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: We present an architecture for layered sensing which is constructed
 on open source and government off-the-shelf software. This architecture shows
 how leveraging existing open-source software allows for practical graphical user
