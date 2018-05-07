@@ -75,7 +75,7 @@ data with minimal human effort.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1ikj8W3poF0MxozazRzCriBdx1RRYHlm8"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1Ss5Mi-9KnDd4NLyKOgPXJHr1tKkKVels"&gt;Frame Equalization (python code)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1UKjiGHkCDuoYBA9MfChwusUKw460rKpi"&gt;Frame Equalization Server (python code)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>SIFT Vehicle Recognition with Semi-Synthetic Model Database</title><link href="/sift-vehicle-recognition-with-semi-synthetic-model-database.html" rel="alternate"></link><published>2012-04-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-04-01:/sift-vehicle-recognition-with-semi-synthetic-model-database.html</id><summary type="html">&lt;p&gt;Object recognition with a semi-synthetic model database&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract – Object recognition is an important problem that has many applications
+&lt;/ul&gt;</content></entry><entry><title>SIFT Vehicle Recognition with Semi-Synthetic Model Database</title><link href="/sift-vehicle-recognition-with-semi-synthetic-model-database.html" rel="alternate"></link><published>2012-04-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-04-01:/sift-vehicle-recognition-with-semi-synthetic-model-database.html</id><summary type="html">&lt;p&gt;Object recognition with a semi-synthetic model database&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: Object recognition is an important problem that has many applications
 that are of interest to the United States Air Force (USAF). Recently the USAF
 released its update to Technology Horizons, a report that is designed to guide
 the science and technology direction of the Air Force. Technology Horizons
@@ -96,8 +96,8 @@ which keeps the size of the model database reasonable.&lt;/p&gt;
 recognition.&lt;/p&gt;
 &lt;p&gt;Links to paper and presentation:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/SIFTVehicleRecognitionWithSemiSyntheticModelDatabase/PaperSIFT_VehicleRec_With_Semi-Synth_Model_Database_Color.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/SIFTVehicleRecognitionWithSemiSyntheticModelDatabase/PresentationObject_Rec_With_Synth_Model_Database_SPIE.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1VZkgs6iEvn-FpeN_nRFcQdo_eZvt3Wfa"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1SfQY2eIqp8Hx-0-55kS-jQKIS6scx6vm"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model version 2 for ATR Center</title><link href="/physics-accurate-layered-sensing-model-version-2-for-atr-center.html" rel="alternate"></link><published>2011-08-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-08-01:/physics-accurate-layered-sensing-model-version-2-for-atr-center.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software version 2&lt;/p&gt;</summary><content type="html">&lt;p&gt;The main focus of this project was to provide an architecture for layered
 sensing simulation. It is modular in design and constructed on open-source-off-
 the-shelf-software (Blender, LuxRender, Python, OpenCV, and SUMO).&lt;/p&gt;
