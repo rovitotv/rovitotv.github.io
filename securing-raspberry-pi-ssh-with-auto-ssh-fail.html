@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <title>Securing Raspberry Pi SSH with Auto SSH Fail</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="rovitotv's blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">rovitotv's blog </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li class="active"><a href="/category/computing.html">Computing</a></li>
+                    <li><a href="/category/lego.html">Lego</a></li>
+                    <li><a href="/category/research.html">Research</a></li>
+                    <li><a href="/category/scouts.html">Scouts</a></li>
+                    <li><a href="/category/sports.html">Sports</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/securing-raspberry-pi-ssh-with-auto-ssh-fail.html" rel="bookmark"
+           title="Permalink to Securing Raspberry Pi SSH with Auto SSH Fail">Securing Raspberry Pi SSH with Auto SSH Fail</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-04-02T12:00:00-04:00">
+                Published: Sun 02 April 2017
+        </abbr>
+		<br />
+        <abbr class="modified" title="2017-04-02T12:00:00-04:00">
+                Updated: Sun 02 April 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/todd-v-rovito.html">Todd V. Rovito</a>
+        </address>
+<p>In <a href="/category/computing.html">Computing</a>.</p>
+
+</footer><!-- /.post-info -->      <p>My Raspberry Pi is used as a web server but I also use it to develop
+Python code via SSH. My primary terminal into my Raspberry Pi is a
+iPad Pro. I find the combination of a Raspberry Pi along with an 
+iPad Pro a powerful combination.  It infuriates me when I look at 
+/var/log/auth.log on my Raspberry Pi and see all the failed password
+attempts. Use the command to find all of the failed password attempts:</p>
+<div class="highlight"><pre><span></span>cat /var/log/auth.log <span class="p">|</span> grep <span class="s1">&#39;Failed password&#39;</span>
+</pre></div>
+
+
+<p>Some of these crackers are repeatedly trying to crack
+into my Raspberry Pi, with enough guesses they will eventually get in. 
+To make matters worse they are trying popular user names such as 
+"root", "admin", "php", etc.  None of these are valid accounts on my
+Raspberry Pi but I need to find a way to stop these attempts.  This is
+not my first rodeo so to speak I have been putting computers on the
+internet since 1988.  For as long as I can remember Unix has had this
+simple concept of /etc/hosts.allow and /etc/hosts.deny.  Simply put a
+IP address in /etc/hosts.deny with the syntax "ALL: 2.60.223.100" and 
+they won't even connect to the SSH daemon. The /etc/hosts.deny file
+prevents these crackers from having infinite attempts to crack my 
+Raspberry Pi and it reduces the load on the little computer because
+any network traffic from a IP address in /etc/hosts.deny won't be
+allowed to connect to sshd.  But the idea of manually going through
+the /var/log/auth.log file and adding addresses to /etc/hosts.deny
+sounds painful and not something I am likely to keep up with.  This 
+is a perfect use case for a simple Python script.  So here is a 
+Python script I wrote called auto_ssh_fail.py:</p>
+<div class="highlight"><pre><span></span><span class="c1"># very simple program that scans /var/log/auth.log and looks for mis-behaving</span>
+<span class="c1"># hosts.  Those mis-behaving hosts are then added to /etc/hosts.deny. This</span>
+<span class="c1"># script is designed/tested on Raspbian Jesse.</span>
+<span class="c1">#</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">read_secure_log</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        reads the file /var/log/auth.log</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/var/log/auth.log&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">secure_file</span><span class="p">:</span>
+        <span class="n">log_lines</span> <span class="o">=</span> <span class="n">secure_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">log_lines</span>
+
+<span class="k">def</span> <span class="nf">get_ip_address</span><span class="p">(</span><span class="n">log_string</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        finds the ip address from the log string then returns it</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">from_index</span> <span class="o">=</span> <span class="n">log_string</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;from &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">from_index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">log_string_split</span> <span class="o">=</span> <span class="n">log_string</span><span class="p">[</span><span class="n">from_index</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">log_string_split</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">log_string_split</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;NULL&quot;</span>
+
+<span class="k">def</span> <span class="nf">parse_secure_log</span><span class="p">(</span><span class="n">secure_log_lines</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        parses the secure log lines looking for string &#39;Failed password&#39;</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">fail_ip_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">secure_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">secure_log_lines</span><span class="p">)):</span>
+        <span class="n">ban_ip</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="s2">&quot;Failed password&quot;</span> <span class="ow">in</span> <span class="n">secure_log_lines</span><span class="p">[</span><span class="n">secure_index</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s2">&quot;invalid user&quot;</span> <span class="ow">in</span> <span class="n">secure_log_lines</span><span class="p">[</span><span class="n">secure_index</span><span class="p">]:</span>
+                <span class="n">ban_ip</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="s2">&quot;for root&quot;</span> <span class="ow">in</span> <span class="n">secure_log_lines</span><span class="p">[</span><span class="n">secure_index</span><span class="p">]:</span>
+                <span class="n">ban_ip</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="s2">&quot;for mail&quot;</span> <span class="ow">in</span> <span class="n">secure_log_lines</span><span class="p">[</span><span class="n">secure_index</span><span class="p">]:</span>
+                <span class="n">ban_ip</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="k">if</span> <span class="n">ban_ip</span><span class="p">:</span>
+            <span class="n">ip_address_to_ban</span> <span class="o">=</span> <span class="n">get_ip_address</span><span class="p">(</span><span class="n">secure_log_lines</span><span class="p">[</span><span class="n">secure_index</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">ip_address_to_ban</span> <span class="o">!=</span> <span class="s2">&quot;NULL&quot;</span><span class="p">:</span>
+                <span class="n">fail_ip_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ip_address_to_ban</span><span class="p">)</span>
+
+    <span class="n">fail_ip_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">fail_ip_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">)</span>
+    <span class="n">fail_ip_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fail_ip_set</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fail_ip_list</span>
+
+<span class="k">def</span> <span class="nf">add_hosts_to_deny</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        add hosts in fail_ip_list to hosts.deny checking to make sure it</span>
+<span class="sd">        does not already exist</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">ip_not_deined_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/etc/hosts.deny&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hosts_deny_file</span><span class="p">:</span>
+        <span class="n">hosts_deny_lines</span> <span class="o">=</span> <span class="n">hosts_deny_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="c1"># make sure fail_ip adress it not already in hosts.deny</span>
+    <span class="k">for</span> <span class="n">fail_ip_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">)):</span>
+        <span class="n">ip_not_denied</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">hosts_deny_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">hosts_deny_lines</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">fail_ip_list</span><span class="p">[</span><span class="n">fail_ip_index</span><span class="p">]</span> <span class="ow">in</span> <span class="n">hosts_deny_lines</span><span class="p">[</span><span class="n">hosts_deny_index</span><span class="p">]:</span>
+                <span class="n">ip_not_denied</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">ip_not_denied</span><span class="p">:</span>
+            <span class="n">ip_not_deined_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">[</span><span class="n">fail_ip_index</span><span class="p">])</span>
+
+    <span class="c1"># add ip_not_deined_list to hosts_deny</span>
+    <span class="k">for</span> <span class="n">ip_not_deined_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ip_not_deined_list</span><span class="p">)):</span>
+        <span class="n">hosts_deny_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;ALL: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">ip_not_deined_list</span><span class="p">[</span><span class="n">ip_not_deined_index</span><span class="p">])</span>
+
+    <span class="c1"># now write out new /etc/hosts.deny file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/etc/hosts.deny&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">hosts_deny_file</span><span class="p">:</span>
+        <span class="n">hosts_deny_file</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">hosts_deny_lines</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">secure_log_lines</span> <span class="o">=</span> <span class="n">read_secure_log</span><span class="p">()</span>
+    <span class="n">fail_ip_list</span> <span class="o">=</span> <span class="n">parse_secure_log</span><span class="p">(</span><span class="n">secure_log_lines</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;detected </span><span class="si">%d</span><span class="s2"> mis-behaving ips&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;following hosts will be deined&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">)):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">add_hosts_to_deny</span><span class="p">(</span><span class="n">fail_ip_list</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The script above is simple, feel free to edit for your needs.
+Be careful that you don't lock out your own IP address by logging in
+with the wrong password.  To install this script create a directory 
+with the command:</p>
+<div class="highlight"><pre><span></span>mkdir /home/pi/auto_ssh_fail
+</pre></div>
+
+
+<p>Then copy the script above to /home/pi/auto_ssh_fail/auto_ssh_fail.py.
+At this point you can run the script but it has to be run as root
+because it will modify the file /etc/hosts.deny, so prepend the run 
+command with sudo:</p>
+<div class="highlight"><pre><span></span>sudo python /home/pi/auto_ssh_fail/auto_ssh_fail.py
+</pre></div>
+
+
+<p>Then if you cat /etc/hosts.deny you should see IP addresses that 
+correspond with failed password attempts in /var/log/auth.log:</p>
+<div class="highlight"><pre><span></span>cat /etc/hosts.deny
+</pre></div>
+
+
+<p>Now that you have the Python script auto_ssh_fail.py running we
+need to have it run repeatedly automatically.  On Unix to run
+programs automatically we use a tool called cron.  Cron is usually
+installed in a system configuration in /etc/cron.hourly or 
+/etc/cron.daily.  Scripts placed in /etc/cron.hourly are run
+automatically every hour and scripts placed in /etc/cron.daily are
+run once a day.  Raspbian is based on Debian which has this 
+<a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=308911">bug</a>
+that scripts with certain file names will be ignored.  It took
+me several hours to figure out why my script was not running on
+the hour, it was called auto_ssh_fail.sh.  Apparently the ".sh"
+at the end of the file name was ignored by the run-parts command
+which is used by cron to execute scripts.  Care needs to be
+taken that full paths are used in cron based scripts because
+the full environment is not loaded. In /etc/cron.hourly or
+/etc/cron.daily copy the following script:</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="c1"># run this script every hour to scan the /var/log/auth.log looking for</span>
+<span class="c1"># mis-behaving ip addresses then add the ip address to hosts.deny</span>
+
+<span class="c1"># Action!</span>
+<span class="nb">echo</span> <span class="s2">&quot;starting the auto_ssh_fail.py script ===========================================&quot;</span> &gt;&gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+/bin/date &gt;&gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+/usr/bin/python2.7 /home/pi/auto_ssh_fail/auto_ssh_fail.py &gt;&gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+/bin/date &gt;&gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="nb">echo</span> <span class="s2">&quot;finished the auto_ssh_fail.py script ===========================================&quot;</span> &gt;&gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+
+
+<p>Now every hour or once a day (I recommend once an hour) the 
+log file /var/log/auth.log will be automatically scanned and
+failed password attempts will be added to /etc/hosts.deny.  If
+you run the script hourly then at most a cracker will have 60
+minutes to attempt a break-in which is very difficult if you
+use a strong password.  Another suggestion is to not use passwords
+but 
+<a href="http://raspi.tv/2012/how-to-set-up-keys-and-disable-password-login-for-ssh-on-your-raspberry-pi">SSH keys</a>.  SSH keys are long and are random, if you are
+careful to protect your private key your Raspberry Pi would be
+extremely difficult to crack.  </p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.raspberrypi.org">Raspberry Pi</a></li>
+                            <li><a href="http://teamafrl.afciviliancareers.com">AFRL</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://twitter.com/rovitotv">Twitter</a></li>
+                            <li><a href="https://github.com/rovitotv">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UCBl6ggrOjOtyoyXsdNvKouA">YouTube</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

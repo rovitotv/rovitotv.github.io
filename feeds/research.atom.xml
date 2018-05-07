@@ -55,6 +55,93 @@ algorithms.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1aZg3AL258UMy6o18o2iNkd_yvBvG8j-I"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1BaDFeUhiOoxY6vKNd8CUvsUpdMJ7j74x"&gt;Video showing light conditions&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1tYmoKI2f4L34fEPD14ARx0XHCL2Xyakf"&gt;Video showing positions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Image Processing in the Amazon Cloud with Enthought Python</title><link href="/image-processing-in-the-amazon-cloud-with-enthought-python.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/image-processing-in-the-amazon-cloud-with-enthought-python.html</id><summary type="html">&lt;p&gt;Abstract – Key idea of this work is to provide a open source frame work for
+image processing that can be run on different parallel processing platforms.
+Parallel processing is necessary because sensors are producing more data at
+faster rates. This presentation looks at wide area motion imagery (WAMI) data
+from …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract – Key idea of this work is to provide a open source frame work for
+image processing that can be run on different parallel processing platforms.
+Parallel processing is necessary because sensors are producing more data at
+faster rates. This presentation looks at wide area motion imagery (WAMI) data
+from LAIR public released data set. Traditional S&amp;amp;E tools don’t scale in the
+cloud in terms of performance or cost. Open source software along with cloud
+computing becomes an enabler of affordable parallel processing because license
+costs per node are minimized plus computation has become a commodity. This
+presentation uses Enthought Python Distribution with parallel processing support
+via built-in ZeroMQ. This process can be automated to produce large amounts of
+data with minimal human effort.&lt;/p&gt;
+&lt;p&gt;Links to paper and sample code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/ImageProcessingInTheAmazonCloudwithEnthoughtPythonDist.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/BDFrameEqualization.py"&gt;Frame Equalization (python code)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/ImageProcessingInTheAmazonCloudWithEnthoughtPython/BDFrameEqualizationServer.py"&gt;Frame Equalization Server (python code)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model version 2 for ATR Center</title><link href="/physics-accurate-layered-sensing-model-version-2-for-atr-center.html" rel="alternate"></link><published>2011-08-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-08-01:/physics-accurate-layered-sensing-model-version-2-for-atr-center.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software version 2&lt;/p&gt;</summary><content type="html">&lt;p&gt;The main focus of this project was to provide an architecture for layered
+sensing simulation. It is modular in design and constructed on open-source-off-
+the-shelf-software (Blender, LuxRender, Python, OpenCV, and SUMO).&lt;/p&gt;
+&lt;p&gt;The project was complied from previous work, fixing many errors such as,
+multiple vehicle models and color projections. I teamed with and mentored two
+undergraduate students throughout the process. Their effort enabled them to
+increase their knowledge and experience with Linux, Python, Ray Tracing, and Geo-
+Projections.&lt;/p&gt;
+&lt;p&gt;Links to presentation and video:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/ATR_Workshop.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/Building.mp4"&gt;Building video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/MedFlyer.mp4"&gt;Medium flyer video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/MultiCar.mp4"&gt;Multi-car video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/Sadr_City_in Blender.mp4"&gt;Sadr City in Blender video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/PursuerWith5Streams.mp4"&gt;Pursuer with five streams video&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model</title><link href="/physics-accurate-layered-sensing-model.html" rel="alternate"></link><published>2011-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-07-01:/physics-accurate-layered-sensing-model.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender © [1],
+LuxRender © [2], Open CV [3], SUMO [4], and Python © [5]) to build an image
+processing model for exploring combinations of sensors/platforms for any given
+image resolution. The model produces camera position, camera attitude, and
+synthetic camera data that can be used for exploitation purposes. We focus on
+electro-optical (EO) visible sensors to simplify the rendering but this work
+could be extended to use other rendering tools that support different
+modalities. Open Computer Vision (Open CV) is used to generate a camera model
+for the intrinsics of the virtual camera. This camera model is then used to geo-
+project the images from pixel space into a world coordinate system storing the
+output in National Imagery Transmission Format (NITF) for display with standard
+Intelligence Analysis (IA) tools such as RYA’s Pursuer [6]. We also demonstrate
+Simulation of Urban Mobility (SUMO) software to simulate complex traffic
+patterns. The key idea of the paper is to provide an architecture for layered
+sensing simulation which is modular in design and constructed on open-source
+off-the-shelf software yielding a physics accurate virtual model of the world.
+This architecture shows how leveraging existing open-source software allows for
+practical layered sensing modeling to be rapidly assimilated and utilized in
+real-world applications. In this paper we demonstrate our model output is
+automatically exploitable by using generated data with an innovative geo-
+registration algorithm and real time display.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/PhysicsAccurateLayeredSensingModelFinal.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/NAECONPresentation.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/00_Blender_Camera_Animation.mp4"&gt;Blender Camera Animation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/01_SUMO.mp4"&gt;SUMO Animation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/02_Sadr_City_Car_Animation_Wire.mp4"&gt;Sadr City Car Animation Wire Frame&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/04_Building_Camera.mp4"&gt;Building Camera Animation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/05_SyntheticNITFInPursuer3.mp4"&gt;Synthetic NITF in Pursuer Animation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Open Source Based Architecture For Layered Sensing Applications</title><link href="/open-source-based-architecture-for-layered-sensing-applications.html" rel="alternate"></link><published>2010-04-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2010-04-01:/open-source-based-architecture-for-layered-sensing-applications.html</id><summary type="html">&lt;p&gt;Using open source tools is an example of layered sensing applications&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract – We present an architecture for layered sensing which is constructed
+on open source and government off-the-shelf software. This architecture shows
+how leveraging existing open-source software allows for practical graphical user
+interfaces along with the underlying database and messaging architecture to be
+rapidly assimilated and utilized in real-world applications. As an example of
+how this works, we present a system composed of a database and a graphical user
+interface which can display wide area motion imagery, ground-based sensor data
+and overlays from narrow field of view sensors in one composite image composed
+of sensor data and other metadata in separate layers on the display. We further
+show how the development time is greatly reduced by utilizing open-source
+software and integrating it into the final system design. The paper describes
+the architecture, the pros and cons of the open-source approach with results for
+a layered sensing application with data from multiple disparate sensors.
+Keywords: SPADE, layered sensing, open-source, NASA World Wind, NITF, network
+centric warfare&lt;/p&gt;
+&lt;p&gt;Pursuer is based on NASA’s World Wind and is a good example of Open Source
+within the government. We are currently hosting the project on forge.mil with an
+active open source DoD community. Links to paper, presentation, and code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/OpenSourceBasedArchitectureForLayeredSensingApplications/Paper.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/OpenSourceBasedArchitectureForLayeredSensingApplications/Presentation.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/OpenSourceBasedArchitectureForLayeredSensingApplications/TechnologyMilestonePursuingMultisensorGUI.pdf"&gt;Technology Milestone&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Antenna Aimpoint Integration For Staring Mode Surveillance</title><link href="/antenna-aimpoint-integration-for-staring-mode-surveillance.html" rel="alternate"></link><published>2008-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2008-07-01:/antenna-aimpoint-integration-for-staring-mode-surveillance.html</id><summary type="html">&lt;p&gt;Air to ground data link that was capable of 250 Mbits/sec&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a fun project! We created a wireless air to ground data link that was
 capable of 250 Mbits/sec. The same algorithm and math can be used for pointing
 sensors.&lt;/p&gt;

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <title>Trying out OS X Fuse and SSHFS connected to Raspberry Pi</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="rovitotv's blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">rovitotv's blog </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li class="active"><a href="/category/computing.html">Computing</a></li>
+                    <li><a href="/category/lego.html">Lego</a></li>
+                    <li><a href="/category/research.html">Research</a></li>
+                    <li><a href="/category/scouts.html">Scouts</a></li>
+                    <li><a href="/category/sports.html">Sports</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/trying-out-os-x-fuse-and-sshfs-connected-to-raspberry-pi.html" rel="bookmark"
+           title="Permalink to Trying out OS X Fuse and SSHFS connected to Raspberry Pi">Trying out OS X Fuse and SSHFS connected to Raspberry Pi</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-02-06T23:53:00-05:00">
+                Published: Sat 06 February 2016
+        </abbr>
+		<br />
+        <abbr class="modified" title="2016-02-06T23:53:00-05:00">
+                Updated: Sat 06 February 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/todd-v-rovito.html">Todd V. Rovito</a>
+        </address>
+<p>In <a href="/category/computing.html">Computing</a>.</p>
+
+</footer><!-- /.post-info -->      <p>I am always seeking ways to improve my workflow.  As a heavy Sublime Text user I
+had a colleague suggest <a href="https://wbond.net/sublime_packages/sftp/usage">wbond Sublime
+SFTP</a> but I just can't spend the
+$30 for it.  Yes it is true I am cheap and I prefer open source software, it is
+bad enough I had to buy Sublime Text because I was using it so much.  Another
+alternative that I wanted to investigate was
+<a href="https://en.wikipedia.org/wiki/SSHFS">SSHFS</a>.  SSHFS lets a user "mount" a
+remote file system with no additional software on the server side except for
+standard ssh.  After the remote file system is mounted Sublime Text can be
+used to edit files or do any other standard file command from the shell as
+if the file system were local.  </p>
+<p>This is a little confusing but SSHFS is designed to use <a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">FUSE which stands for
+Filesystem In Userspace</a>.
+FUSE basically allows non-privileged users create their own file systems
+without messing with the kernel.  I have heard of people using it to access
+NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE. </p>
+<p>So what do you have to install on OS X to get this to work. First off I am
+running on 10.11.3 OS X El Capitan the latest at the time of writing this post.</p>
+<ol>
+<li>Install <a href="http://osxfuse.github.io">OS X Fuse</a> they have a nice installer
+of the stable release.  For added flexibility I would install the Mac Fuse
+compatibility layer as you will be able to support more file systems.  This
+is not needed if you just want to use SSHFS.  </li>
+<li>Install <a href="http://osxfuse.github.io">SSHFS</a> they have a nice installer of the
+stable release.</li>
+<li>A reboot is recommended.</li>
+<li>To mount a file system you use the command "sshfs" from the OS X terminal 
+which is similar to the standard mount command:</li>
+</ol>
+<div class="highlight"><pre><span></span>sshfs pi@192.168.1.9:/ ~/temp/pi/
+</pre></div>
+
+
+<p>Then if you perform a <code>df -h</code> command you will notice that a new file system
+is mounted.  </p>
+<div class="highlight"><pre><span></span>Todds-MacBook-Pro:pi rovitotv$ df -h
+Filesystem         Size   Used  Avail Capacity   iused     ifree %iused  Mounted on
+/dev/disk1        <span class="m">1</span>.8Ti  810Gi  <span class="m">1</span>.0Ti    <span class="m">44</span>% <span class="m">212471929</span> <span class="m">275606053</span>   <span class="m">44</span>%   /
+devfs             193Ki  193Ki    0Bi   <span class="m">100</span>%       <span class="m">666</span>         <span class="m">0</span>  <span class="m">100</span>%   /dev
+map -hosts          0Bi    0Bi    0Bi   <span class="m">100</span>%         <span class="m">0</span>         <span class="m">0</span>  <span class="m">100</span>%   /net
+map auto_home       0Bi    0Bi    0Bi   <span class="m">100</span>%         <span class="m">0</span>         <span class="m">0</span>  <span class="m">100</span>%   /home
+pi@192.168.1.9:/   13Gi  <span class="m">4</span>.2Gi  <span class="m">8</span>.5Gi    <span class="m">33</span>%    <span class="m">144854</span>    <span class="m">752746</span>   <span class="m">16</span>%   /Users/rovitotv/temp/pi
+</pre></div>
+
+
+<p>Once a remote file system is mounted you can use the finder or the terminal
+as normal and all commands that occur from /Users/rovitotv/temp/pi happen
+on the Raspberry Pi.  Performance seems to be decent even over wi-fi. </p>
+<p>After all your work is completed you can unmount the volume with the command:</p>
+<div class="highlight"><pre><span></span>umount /Users/rovitotv/temp/pi
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.raspberrypi.org">Raspberry Pi</a></li>
+                            <li><a href="http://teamafrl.afciviliancareers.com">AFRL</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="https://twitter.com/rovitotv">Twitter</a></li>
+                            <li><a href="https://github.com/rovitotv">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UCBl6ggrOjOtyoyXsdNvKouA">YouTube</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

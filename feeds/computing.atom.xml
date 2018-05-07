@@ -58,4 +58,261 @@ presentation on the web.  Here is the program:&lt;/p&gt;
 
 &lt;p&gt;Then be careful that you clear your web cache so the same
 upside down image does not reload.  Hopefully this will save
-you some time!&lt;/p&gt;</content></entry></feed>
+you some time!&lt;/p&gt;</content></entry><entry><title>Securing Raspberry Pi SSH with Auto SSH Fail</title><link href="/securing-raspberry-pi-ssh-with-auto-ssh-fail.html" rel="alternate"></link><published>2017-04-02T12:00:00-04:00</published><updated>2017-04-02T12:00:00-04:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2017-04-02:/securing-raspberry-pi-ssh-with-auto-ssh-fail.html</id><summary type="html">&lt;p&gt;Secure SSH on a Raspberry Pi with this simple Python script&lt;/p&gt;</summary><content type="html">&lt;p&gt;My Raspberry Pi is used as a web server but I also use it to develop
+Python code via SSH. My primary terminal into my Raspberry Pi is a
+iPad Pro. I find the combination of a Raspberry Pi along with an 
+iPad Pro a powerful combination.  It infuriates me when I look at 
+/var/log/auth.log on my Raspberry Pi and see all the failed password
+attempts. Use the command to find all of the failed password attempts:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat /var/log/auth.log &lt;span class="p"&gt;|&lt;/span&gt; grep &lt;span class="s1"&gt;&amp;#39;Failed password&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some of these crackers are repeatedly trying to crack
+into my Raspberry Pi, with enough guesses they will eventually get in. 
+To make matters worse they are trying popular user names such as 
+"root", "admin", "php", etc.  None of these are valid accounts on my
+Raspberry Pi but I need to find a way to stop these attempts.  This is
+not my first rodeo so to speak I have been putting computers on the
+internet since 1988.  For as long as I can remember Unix has had this
+simple concept of /etc/hosts.allow and /etc/hosts.deny.  Simply put a
+IP address in /etc/hosts.deny with the syntax "ALL: 2.60.223.100" and 
+they won't even connect to the SSH daemon. The /etc/hosts.deny file
+prevents these crackers from having infinite attempts to crack my 
+Raspberry Pi and it reduces the load on the little computer because
+any network traffic from a IP address in /etc/hosts.deny won't be
+allowed to connect to sshd.  But the idea of manually going through
+the /var/log/auth.log file and adding addresses to /etc/hosts.deny
+sounds painful and not something I am likely to keep up with.  This 
+is a perfect use case for a simple Python script.  So here is a 
+Python script I wrote called auto_ssh_fail.py:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# very simple program that scans /var/log/auth.log and looks for mis-behaving&lt;/span&gt;
+&lt;span class="c1"&gt;# hosts.  Those mis-behaving hosts are then added to /etc/hosts.deny. This&lt;/span&gt;
+&lt;span class="c1"&gt;# script is designed/tested on Raspbian Jesse.&lt;/span&gt;
+&lt;span class="c1"&gt;#&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_secure_log&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;        reads the file /var/log/auth.log&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/var/log/auth.log&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;secure_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;log_lines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;secure_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;log_lines&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_ip_address&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;log_string&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;        finds the ip address from the log string then returns it&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;from_index&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;log_string&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;from &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;from_index&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;log_string_split&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;log_string&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;from_index&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;log_string_split&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;log_string_split&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;NULL&amp;quot;&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_secure_log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;        parses the secure log lines looking for string &amp;#39;Failed password&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;fail_ip_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;secure_index&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="n"&gt;ban_ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Failed password&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;secure_index&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;invalid user&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;secure_index&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+                &lt;span class="n"&gt;ban_ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;for root&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;secure_index&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+                &lt;span class="n"&gt;ban_ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;for mail&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;secure_index&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+                &lt;span class="n"&gt;ban_ip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ban_ip&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;ip_address_to_ban&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_ip_address&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;secure_index&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ip_address_to_ban&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;NULL&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip_address_to_ban&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;fail_ip_set&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;fail_ip_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_set&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;fail_ip_list&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add_hosts_to_deny&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;        add hosts in fail_ip_list to hosts.deny checking to make sure it&lt;/span&gt;
+&lt;span class="sd"&gt;        does not already exist&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class="n"&gt;ip_not_deined_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/etc/hosts.deny&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;hosts_deny_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;hosts_deny_lines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;hosts_deny_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# make sure fail_ip adress it not already in hosts.deny&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;fail_ip_index&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="n"&gt;ip_not_denied&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;hosts_deny_index&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hosts_deny_lines&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fail_ip_index&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;hosts_deny_lines&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;hosts_deny_index&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+                &lt;span class="n"&gt;ip_not_denied&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+                &lt;span class="k"&gt;break&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;ip_not_denied&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;ip_not_deined_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;fail_ip_index&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# add ip_not_deined_list to hosts_deny&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;ip_not_deined_index&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip_not_deined_list&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="n"&gt;hosts_deny_lines&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ALL: &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;ip_not_deined_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;ip_not_deined_index&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# now write out new /etc/hosts.deny file&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/etc/hosts.deny&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;hosts_deny_file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;hosts_deny_file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;writelines&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hosts_deny_lines&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;secure_log_lines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read_secure_log&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;fail_ip_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parse_secure_log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;secure_log_lines&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;detected &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s2"&gt; mis-behaving ips&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;following hosts will be deined&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;add_hosts_to_deny&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fail_ip_list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The script above is simple, feel free to edit for your needs.
+Be careful that you don't lock out your own IP address by logging in
+with the wrong password.  To install this script create a directory 
+with the command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir /home/pi/auto_ssh_fail
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then copy the script above to /home/pi/auto_ssh_fail/auto_ssh_fail.py.
+At this point you can run the script but it has to be run as root
+because it will modify the file /etc/hosts.deny, so prepend the run 
+command with sudo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo python /home/pi/auto_ssh_fail/auto_ssh_fail.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then if you cat /etc/hosts.deny you should see IP addresses that 
+correspond with failed password attempts in /var/log/auth.log:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat /etc/hosts.deny
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now that you have the Python script auto_ssh_fail.py running we
+need to have it run repeatedly automatically.  On Unix to run
+programs automatically we use a tool called cron.  Cron is usually
+installed in a system configuration in /etc/cron.hourly or 
+/etc/cron.daily.  Scripts placed in /etc/cron.hourly are run
+automatically every hour and scripts placed in /etc/cron.daily are
+run once a day.  Raspbian is based on Debian which has this 
+&lt;a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=308911"&gt;bug&lt;/a&gt;
+that scripts with certain file names will be ignored.  It took
+me several hours to figure out why my script was not running on
+the hour, it was called auto_ssh_fail.sh.  Apparently the ".sh"
+at the end of the file name was ignored by the run-parts command
+which is used by cron to execute scripts.  Care needs to be
+taken that full paths are used in cron based scripts because
+the full environment is not loaded. In /etc/cron.hourly or
+/etc/cron.daily copy the following script:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class="c1"&gt;# run this script every hour to scan the /var/log/auth.log looking for&lt;/span&gt;
+&lt;span class="c1"&gt;# mis-behaving ip addresses then add the ip address to hosts.deny&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Action!&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;starting the auto_ssh_fail.py script ===========================================&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+/bin/date &amp;gt;&amp;gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+/usr/bin/python2.7 /home/pi/auto_ssh_fail/auto_ssh_fail.py &amp;gt;&amp;gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+/bin/date &amp;gt;&amp;gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;finished the auto_ssh_fail.py script ===========================================&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; /home/pi/auto_ssh_fail/auto_ssh_fail.log &lt;span class="m"&gt;2&lt;/span&gt;&amp;gt;&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now every hour or once a day (I recommend once an hour) the 
+log file /var/log/auth.log will be automatically scanned and
+failed password attempts will be added to /etc/hosts.deny.  If
+you run the script hourly then at most a cracker will have 60
+minutes to attempt a break-in which is very difficult if you
+use a strong password.  Another suggestion is to not use passwords
+but 
+&lt;a href="http://raspi.tv/2012/how-to-set-up-keys-and-disable-password-login-for-ssh-on-your-raspberry-pi"&gt;SSH keys&lt;/a&gt;.  SSH keys are long and are random, if you are
+careful to protect your private key your Raspberry Pi would be
+extremely difficult to crack.  &lt;/p&gt;</content></entry><entry><title>Raspberry PI Touch Screen with Chromium Web Browser</title><link href="/raspberry-pi-touch-screen-with-chromium-web-browser.html" rel="alternate"></link><published>2016-03-12T23:53:00-05:00</published><updated>2016-03-12T23:53:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2016-03-12:/raspberry-pi-touch-screen-with-chromium-web-browser.html</id><summary type="html">&lt;p class="first last"&gt;Experimenting with the Raspberry PI Touch Screen running Chromium&lt;/p&gt;
+</summary><content type="html">&lt;p&gt;For my birthday my lovely Wife got me a Raspberry Pi Touch Screen that is
+made by the
+&lt;a class="reference external" href="https://www.raspberrypi.org/blog/the-eagerly-awaited-raspberry-pi-display/"&gt;Raspberry Pi foundation&lt;/a&gt;.
+This is a 7&amp;quot; display at 800x480 resolution with 10 point capacitive touchscreen.
+The screen is easy to install with no soldering required.  You can see first
+hand how easy it is to install with this youtube video:&lt;/p&gt;
+&lt;div class="youtube youtube-16x9"&gt;&lt;iframe src="https://www.youtube.com/embed/hqdz66Y-H7M" allowfullscreen seamless frameBorder="0"&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;After setting up the screen I then installed the Chromium web browser with
+the instructions from this &lt;a class="reference external" href="https://www.raspberrypi.org/forums/viewtopic.php?t=121195"&gt;forum post&lt;/a&gt;.
+If you read the entire blog post you will discover the author &amp;quot;kusti8&amp;quot; actually
+compiled Chromium from source code and posted the packages on dropbox.  I
+used the commands in the first post and everything worked great.  For those that
+are curious about performance I captured the Raspberry Pi 2 operating with
+Chromium in a youtube video and posted here:&lt;/p&gt;
+&lt;div class="youtube youtube-16x9"&gt;&lt;iframe src="https://www.youtube.com/embed/F6Zj00BxtrA" allowfullscreen seamless frameBorder="0"&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;p&gt;When I get my hands on a Raspberry Pi 3 I will update the video to show off
+the Raspberry Pi 3's improved performance.&lt;/p&gt;
+</content></entry><entry><title>Trying out OS X Fuse and SSHFS connected to Raspberry Pi</title><link href="/trying-out-os-x-fuse-and-sshfs-connected-to-raspberry-pi.html" rel="alternate"></link><published>2016-02-06T23:53:00-05:00</published><updated>2016-02-06T23:53:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2016-02-06:/trying-out-os-x-fuse-and-sshfs-connected-to-raspberry-pi.html</id><summary type="html">&lt;p&gt;Experiments with OS X Fuse and SSHFS connected to Raspberry Pi&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am always seeking ways to improve my workflow.  As a heavy Sublime Text user I
+had a colleague suggest &lt;a href="https://wbond.net/sublime_packages/sftp/usage"&gt;wbond Sublime
+SFTP&lt;/a&gt; but I just can't spend the
+$30 for it.  Yes it is true I am cheap and I prefer open source software, it is
+bad enough I had to buy Sublime Text because I was using it so much.  Another
+alternative that I wanted to investigate was
+&lt;a href="https://en.wikipedia.org/wiki/SSHFS"&gt;SSHFS&lt;/a&gt;.  SSHFS lets a user "mount" a
+remote file system with no additional software on the server side except for
+standard ssh.  After the remote file system is mounted Sublime Text can be
+used to edit files or do any other standard file command from the shell as
+if the file system were local.  &lt;/p&gt;
+&lt;p&gt;This is a little confusing but SSHFS is designed to use &lt;a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace"&gt;FUSE which stands for
+Filesystem In Userspace&lt;/a&gt;.
+FUSE basically allows non-privileged users create their own file systems
+without messing with the kernel.  I have heard of people using it to access
+NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE. &lt;/p&gt;
+&lt;p&gt;So what do you have to install on OS X to get this to work. First off I am
+running on 10.11.3 OS X El Capitan the latest at the time of writing this post.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install &lt;a href="http://osxfuse.github.io"&gt;OS X Fuse&lt;/a&gt; they have a nice installer
+of the stable release.  For added flexibility I would install the Mac Fuse
+compatibility layer as you will be able to support more file systems.  This
+is not needed if you just want to use SSHFS.  &lt;/li&gt;
+&lt;li&gt;Install &lt;a href="http://osxfuse.github.io"&gt;SSHFS&lt;/a&gt; they have a nice installer of the
+stable release.&lt;/li&gt;
+&lt;li&gt;A reboot is recommended.&lt;/li&gt;
+&lt;li&gt;To mount a file system you use the command "sshfs" from the OS X terminal 
+which is similar to the standard mount command:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sshfs pi@192.168.1.9:/ ~/temp/pi/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then if you perform a &lt;code&gt;df -h&lt;/code&gt; command you will notice that a new file system
+is mounted.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Todds-MacBook-Pro:pi rovitotv$ df -h
+Filesystem         Size   Used  Avail Capacity   iused     ifree %iused  Mounted on
+/dev/disk1        &lt;span class="m"&gt;1&lt;/span&gt;.8Ti  810Gi  &lt;span class="m"&gt;1&lt;/span&gt;.0Ti    &lt;span class="m"&gt;44&lt;/span&gt;% &lt;span class="m"&gt;212471929&lt;/span&gt; &lt;span class="m"&gt;275606053&lt;/span&gt;   &lt;span class="m"&gt;44&lt;/span&gt;%   /
+devfs             193Ki  193Ki    0Bi   &lt;span class="m"&gt;100&lt;/span&gt;%       &lt;span class="m"&gt;666&lt;/span&gt;         &lt;span class="m"&gt;0&lt;/span&gt;  &lt;span class="m"&gt;100&lt;/span&gt;%   /dev
+map -hosts          0Bi    0Bi    0Bi   &lt;span class="m"&gt;100&lt;/span&gt;%         &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;0&lt;/span&gt;  &lt;span class="m"&gt;100&lt;/span&gt;%   /net
+map auto_home       0Bi    0Bi    0Bi   &lt;span class="m"&gt;100&lt;/span&gt;%         &lt;span class="m"&gt;0&lt;/span&gt;         &lt;span class="m"&gt;0&lt;/span&gt;  &lt;span class="m"&gt;100&lt;/span&gt;%   /home
+pi@192.168.1.9:/   13Gi  &lt;span class="m"&gt;4&lt;/span&gt;.2Gi  &lt;span class="m"&gt;8&lt;/span&gt;.5Gi    &lt;span class="m"&gt;33&lt;/span&gt;%    &lt;span class="m"&gt;144854&lt;/span&gt;    &lt;span class="m"&gt;752746&lt;/span&gt;   &lt;span class="m"&gt;16&lt;/span&gt;%   /Users/rovitotv/temp/pi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once a remote file system is mounted you can use the finder or the terminal
+as normal and all commands that occur from /Users/rovitotv/temp/pi happen
+on the Raspberry Pi.  Performance seems to be decent even over wi-fi. &lt;/p&gt;
+&lt;p&gt;After all your work is completed you can unmount the volume with the command:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;umount /Users/rovitotv/temp/pi
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>Getting Ready for the USAF Maker Fest</title><link href="/getting-ready-for-the-usaf-maker-fest.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/getting-ready-for-the-usaf-maker-fest.html</id><summary type="html">&lt;p&gt;Elijah and I went to Tec^Edge and particpated in the Maker Fest&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am super excited for the USAF Maker Fest.  Going to show off my Raspberry Pi
+with web server/email server.  The directions are found on
+(GitHub)[https://github.com/rovitotv/DigitalFreedomWithRaspberryPI].  Here is a
+picture of the front door.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/GettingReadyForTheUSAFMakerFest/WelcomeToUSAFMakerFestScaled.jpg"&gt;&lt;/p&gt;</content></entry><entry><title>It has Been A While</title><link href="/it-has-been-a-while.html" rel="alternate"></link><published>2015-02-21T12:00:00-05:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-02-21:/it-has-been-a-while.html</id><summary type="html">&lt;p&gt;Upgrade blog to Raspberry PI 2&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have not posted to the blog for a while but I am still here! Upgraded my blog
+to a new Raspberry Pi 2 for quad core 900 Mhz performance. Hopefully I got the
+entire blog moved over to the new Raspberry Pi 2 and no content is missing.  I
+have not had time to get a case for the Raspberry Pi 2 yet.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/ItHasBeenAWhile/RaspberryPi1and2-scaled.jpg"&gt;&lt;/p&gt;</content></entry><entry><title>Hello World!</title><link href="/hello-world.html" rel="alternate"></link><published>2014-06-08T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2014-06-08:/hello-world.html</id><summary type="html">&lt;p&gt;Hello World from the Raspberry Pi&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to rovitotv’s world.  rovitotv = Todd V. Rovito.  It is my Unix username
+and has been for a long time.  I am moving my web site from Google Apps to my
+own web server so give me some time to move content over. My web site is powered
+by the Raspberry PI an amazing computer for $40.&lt;/p&gt;</content></entry></feed>

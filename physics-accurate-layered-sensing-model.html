@@ -2,7 +2,7 @@
 <html lang="english">
 <head>
         <meta charset="utf-8" />
-        <title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title>
+        <title>Physics Accurate Layered Sensing Model</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="rovitotv's blog Atom Feed" />
 
@@ -27,14 +27,14 @@
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="bookmark"
-           title="Permalink to Electro-Optical Synthetic Civilian Vehicle Data Domes">Electro-Optical Synthetic Civilian Vehicle Data Domes</a></h1>
+        <a href="/physics-accurate-layered-sensing-model.html" rel="bookmark"
+           title="Permalink to Physics Accurate Layered Sensing Model">Physics Accurate Layered Sensing Model</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2012-07-01T12:00:00-04:00">
-                Published: Sun 01 July 2012
+        <abbr class="published" title="2011-07-01T12:00:00-04:00">
+                Published: Fri 01 July 2011
         </abbr>
 		<br />
         <abbr class="modified" title="2015-12-25T12:00:00-05:00">
@@ -46,25 +46,35 @@
         </address>
 <p>In <a href="/category/research.html">Research</a>.</p>
 
-</footer><!-- /.post-info -->      <p>Abstract: This paper will look at using open source tools (Blender, LuxRender,
-and Python) to generate a large data set to be used to train an object
-recognition system. The model produces camera position, camera attitude, and
+</footer><!-- /.post-info -->      <p>Abstract—This paper will look at using open source tools (Blender © [1],
+LuxRender © [2], Open CV [3], SUMO [4], and Python © [5]) to build an image
+processing model for exploring combinations of sensors/platforms for any given
+image resolution. The model produces camera position, camera attitude, and
 synthetic camera data that can be used for exploitation purposes. We focus on
 electro-optical (EO) visible sensors to simplify the rendering but this work
 could be extended to use other rendering tools that support different
-modalities. The key idea of this paper is to provide an architecture to produce
-synthetic training data which is modular in design and constructed on open-
-source off-the-shelf software yielding a physics accurate virtual model of the
-object we want to recognize. For this paper the objects we are focused on are
-civilian vehicles. This architecture shows how leveraging existing open-source
-software allows for practical training of Electro-Optical object recognition
-algorithms.</p>
-<p>Links to paper, presentation, and videos:</p>
+modalities. Open Computer Vision (Open CV) is used to generate a camera model
+for the intrinsics of the virtual camera. This camera model is then used to geo-
+project the images from pixel space into a world coordinate system storing the
+output in National Imagery Transmission Format (NITF) for display with standard
+Intelligence Analysis (IA) tools such as RYA’s Pursuer [6]. We also demonstrate
+Simulation of Urban Mobility (SUMO) software to simulate complex traffic
+patterns. The key idea of the paper is to provide an architecture for layered
+sensing simulation which is modular in design and constructed on open-source
+off-the-shelf software yielding a physics accurate virtual model of the world.
+This architecture shows how leveraging existing open-source software allows for
+practical layered sensing modeling to be rapidly assimilated and utilized in
+real-world applications. In this paper we demonstrate our model output is
+automatically exploitable by using generated data with an innovative geo-
+registration algorithm and real time display.</p>
 <ul>
-<li><a href="https://drive.google.com/uc?id=1xd8LjM_iJUMLM0Cq8ZTYbsbsYjrp9Lq_">Paper</a></li>
-<li><a href="https://drive.google.com/uc?id=1aZg3AL258UMy6o18o2iNkd_yvBvG8j-I">Presentation</a></li>
-<li><a href="https://drive.google.com/uc?id=1BaDFeUhiOoxY6vKNd8CUvsUpdMJ7j74x">Video showing light conditions</a></li>
-<li><a href="https://drive.google.com/uc?id=1tYmoKI2f4L34fEPD14ARx0XHCL2Xyakf">Video showing positions</a></li>
+<li><a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/PhysicsAccurateLayeredSensingModelFinal.pdf">Paper</a></li>
+<li><a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/NAECONPresentation.pdf">Presentation</a></li>
+<li><a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/00_Blender_Camera_Animation.mp4">Blender Camera Animation</a></li>
+<li><a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/01_SUMO.mp4">SUMO Animation</a></li>
+<li><a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/02_Sadr_City_Car_Animation_Wire.mp4">Sadr City Car Animation Wire Frame</a></li>
+<li><a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/04_Building_Camera.mp4">Building Camera Animation</a></li>
+<li><a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/05_SyntheticNITFInPursuer3.mp4">Synthetic NITF in Pursuer Animation</a></li>
 </ul>
     </div><!-- /.entry-content -->
 
