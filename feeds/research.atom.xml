@@ -33,10 +33,10 @@ simulated images.&lt;/p&gt;
 &lt;p&gt;Links to paper:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1bWDcVBb0iuzpS0dbm4V-j5dbH_fE0lU-"&gt;Paper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title><link href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/electro-optical-synthetic-civilian-vehicle-data-domes.html</id><summary type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender, LuxRender,
+&lt;/ul&gt;</content></entry><entry><title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title><link href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/electro-optical-synthetic-civilian-vehicle-data-domes.html</id><summary type="html">&lt;p&gt;Abstract: This paper will look at using open source tools (Blender, LuxRender,
 and Python) to generate a large data set to be used to train an object
 recognition system. The model produces camera position, camera attitude, and
-synthetic camera data that can be used for exploitation purposes. We focus on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender, LuxRender,
+synthetic camera data that can be used for exploitation purposes. We focus on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: This paper will look at using open source tools (Blender, LuxRender,
 and Python) to generate a large data set to be used to train an object
 recognition system. The model produces camera position, camera attitude, and
 synthetic camera data that can be used for exploitation purposes. We focus on
@@ -51,10 +51,10 @@ software allows for practical training of Electro-Optical object recognition
 algorithms.&lt;/p&gt;
 &lt;p&gt;Links to paper, presentation, and videos:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.dropbox.com/s/zdd0knt5dgtu65g/EOSynthDataDomes_submitted_to_PR_paper.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.dropbox.com/s/aqe0aunepjy2r99/EODataDomesForPR_presentation.pdf?dl=0"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.dropbox.com/s/6kk86echrw5fkja/light.avi?dl=0"&gt;Video showing light conditions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.dropbox.com/s/36c4ohv95fso6hc/pos.avi?dl=0"&gt;Video showing positions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1xd8LjM_iJUMLM0Cq8ZTYbsbsYjrp9Lq_"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1aZg3AL258UMy6o18o2iNkd_yvBvG8j-I"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1BaDFeUhiOoxY6vKNd8CUvsUpdMJ7j74x"&gt;Video showing light conditions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1tYmoKI2f4L34fEPD14ARx0XHCL2Xyakf"&gt;Video showing positions&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Antenna Aimpoint Integration For Staring Mode Surveillance</title><link href="/antenna-aimpoint-integration-for-staring-mode-surveillance.html" rel="alternate"></link><published>2008-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2008-07-01:/antenna-aimpoint-integration-for-staring-mode-surveillance.html</id><summary type="html">&lt;p&gt;Air to ground data link that was capable of 250 Mbits/sec&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a fun project! We created a wireless air to ground data link that was
 capable of 250 Mbits/sec. The same algorithm and math can be used for pointing
 sensors.&lt;/p&gt;
