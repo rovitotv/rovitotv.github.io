@@ -582,7 +582,7 @@ registration algorithm and real time display.&lt;/p&gt;
 &lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/02_Sadr_City_Car_Animation_Wire.mp4"&gt;Sadr City Car Animation Wire Frame&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/04_Building_Camera.mp4"&gt;Building Camera Animation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel/05_SyntheticNITFInPursuer3.mp4"&gt;Synthetic NITF in Pursuer Animation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Open Source Based Architecture For Layered Sensing Applications</title><link href="/open-source-based-architecture-for-layered-sensing-applications.html" rel="alternate"></link><published>2010-04-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2010-04-01:/open-source-based-architecture-for-layered-sensing-applications.html</id><summary type="html">&lt;p&gt;Using open source tools is an example of layered sensing applications&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract – We present an architecture for layered sensing which is constructed
+&lt;/ul&gt;</content></entry><entry><title>Open Source Based Architecture For Layered Sensing Applications</title><link href="/open-source-based-architecture-for-layered-sensing-applications.html" rel="alternate"></link><published>2010-04-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2010-04-01:/open-source-based-architecture-for-layered-sensing-applications.html</id><summary type="html">&lt;p&gt;Using open source tools is an example of layered sensing applications&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: We present an architecture for layered sensing which is constructed
 on open source and government off-the-shelf software. This architecture shows
 how leveraging existing open-source software allows for practical graphical user
 interfaces along with the underlying database and messaging architecture to be
@@ -597,13 +597,13 @@ the architecture, the pros and cons of the open-source approach with results for
 a layered sensing application with data from multiple disparate sensors.
 Keywords: SPADE, layered sensing, open-source, NASA World Wind, NITF, network
 centric warfare&lt;/p&gt;
-&lt;p&gt;Pursuer is based on NASA’s World Wind and is a good example of Open Source
+&lt;p&gt;Pursuer is based on NASA's World Wind and is a good example of Open Source
 within the government. We are currently hosting the project on forge.mil with an
 active open source DoD community. Links to paper, presentation, and code:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/OpenSourceBasedArchitectureForLayeredSensingApplications/Paper.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/OpenSourceBasedArchitectureForLayeredSensingApplications/Presentation.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/OpenSourceBasedArchitectureForLayeredSensingApplications/TechnologyMilestonePursuingMultisensorGUI.pdf"&gt;Technology Milestone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=11f2TG64i2Bor_dHNq5dffNolPgvrdoBK"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1p_pdgQKrDM15xiDpGsFI1eGnZGER570K"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1KV6Mk_DQbITUFW5hlTkV1r8LDnbvFg9H"&gt;Technology Milestone&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Antenna Aimpoint Integration For Staring Mode Surveillance</title><link href="/antenna-aimpoint-integration-for-staring-mode-surveillance.html" rel="alternate"></link><published>2008-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2008-07-01:/antenna-aimpoint-integration-for-staring-mode-surveillance.html</id><summary type="html">&lt;p&gt;Air to ground data link that was capable of 250 Mbits/sec&lt;/p&gt;</summary><content type="html">&lt;p&gt;This was a fun project! We created a wireless air to ground data link that was
 capable of 250 Mbits/sec. The same algorithm and math can be used for pointing
 sensors.&lt;/p&gt;
