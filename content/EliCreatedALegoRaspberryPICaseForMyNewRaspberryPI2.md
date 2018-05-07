@@ -8,5 +8,5 @@ Summary: Eli created a inexpensive case for the raspberry PI 2 from Lego
 Save some money, build your Raspberry Pi case out of Legos.  Even better have
 your kid build the case for you.
 
-![Photo]({attach}/MediaFiles/EliCreatedALegoRaspberryPICase/RaspberryPiLegoCaseScaled.jpg)
+![Photo](https://drive.google.com/uc?id=1LzyXW65oE1CtT572hHjr18eKHKOvfutr)
 
