@@ -35,5 +35,5 @@ simulated images.
 
 Links to paper:
 
-* [Paper](https://www.dropbox.com/s/7usmxgawfrpxfat/2017SPIEPaperDraft.pdf?dl=0)
+* [Paper](https://drive.google.com/uc?id=1bWDcVBb0iuzpS0dbm4V-j5dbH_fE0lU-)
 
