@@ -264,23 +264,23 @@ alternative that I wanted to investigate was
 remote file system with no additional software on the server side except for
 standard ssh.  After the remote file system is mounted Sublime Text can be
 used to edit files or do any other standard file command from the shell as
-if the file system were local.  &lt;/p&gt;
+if the file system were local.&lt;/p&gt;
 &lt;p&gt;This is a little confusing but SSHFS is designed to use &lt;a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace"&gt;FUSE which stands for
 Filesystem In Userspace&lt;/a&gt;.
 FUSE basically allows non-privileged users create their own file systems
 without messing with the kernel.  I have heard of people using it to access
-NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE. &lt;/p&gt;
+NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE.&lt;/p&gt;
 &lt;p&gt;So what do you have to install on OS X to get this to work. First off I am
 running on 10.11.3 OS X El Capitan the latest at the time of writing this post.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Install &lt;a href="http://osxfuse.github.io"&gt;OS X Fuse&lt;/a&gt; they have a nice installer
 of the stable release.  For added flexibility I would install the Mac Fuse
 compatibility layer as you will be able to support more file systems.  This
-is not needed if you just want to use SSHFS.  &lt;/li&gt;
+is not needed if you just want to use SSHFS.&lt;/li&gt;
 &lt;li&gt;Install &lt;a href="http://osxfuse.github.io"&gt;SSHFS&lt;/a&gt; they have a nice installer of the
 stable release.&lt;/li&gt;
 &lt;li&gt;A reboot is recommended.&lt;/li&gt;
-&lt;li&gt;To mount a file system you use the command "sshfs" from the OS X terminal 
+&lt;li&gt;To mount a file system you use the command "sshfs" from the OS X terminal
 which is similar to the standard mount command:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sshfs pi@192.168.1.9:/ ~/temp/pi/
@@ -288,7 +288,7 @@ which is similar to the standard mount command:&lt;/li&gt;
 
 
 &lt;p&gt;Then if you perform a &lt;code&gt;df -h&lt;/code&gt; command you will notice that a new file system
-is mounted.  &lt;/p&gt;
+is mounted.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Todds-MacBook-Pro:pi rovitotv$ df -h
 Filesystem         Size   Used  Avail Capacity   iused     ifree %iused  Mounted on
 /dev/disk1        &lt;span class="m"&gt;1&lt;/span&gt;.8Ti  810Gi  &lt;span class="m"&gt;1&lt;/span&gt;.0Ti    &lt;span class="m"&gt;44&lt;/span&gt;% &lt;span class="m"&gt;212471929&lt;/span&gt; &lt;span class="m"&gt;275606053&lt;/span&gt;   &lt;span class="m"&gt;44&lt;/span&gt;%   /
@@ -301,10 +301,21 @@ pi@192.168.1.9:/   13Gi  &lt;span class="m"&gt;4&lt;/span&gt;.2Gi  &lt;span clas
 
 &lt;p&gt;Once a remote file system is mounted you can use the finder or the terminal
 as normal and all commands that occur from /Users/rovitotv/temp/pi happen
-on the Raspberry Pi.  Performance seems to be decent even over wi-fi. &lt;/p&gt;
+on the Raspberry Pi.  Performance seems to be decent even over wi-fi.&lt;/p&gt;
 &lt;p&gt;After all your work is completed you can unmount the volume with the command:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;umount /Users/rovitotv/temp/pi
-&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>Getting Ready for the USAF Maker Fest</title><link href="/getting-ready-for-the-usaf-maker-fest.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/getting-ready-for-the-usaf-maker-fest.html</id><summary type="html">&lt;p&gt;Elijah and I went to Tec^Edge and particpated in the Maker Fest&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am super excited for the USAF Maker Fest.  Going to show off my Raspberry Pi
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>rovitotv.org Now Powered By Pelican a Static Web Generator in Python</title><link href="/rovitotvorg-now-powered-by-pelican-a-static-web-generator-in-python.html" rel="alternate"></link><published>2016-01-02T12:00:00-05:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2016-01-02:/rovitotvorg-now-powered-by-pelican-a-static-web-generator-in-python.html</id><summary type="html">&lt;p&gt;Big changes at rovitotv.org which is now powered by Pelican&lt;/p&gt;</summary><content type="html">&lt;p&gt;Over the holiday break I switched the blog from WordPress on the Raspberry PI
+2 to using Pelican.  Pelican is written in Python and is a static web 
+generator, this means it takes static text files and automatically converts
+those pages to HTML.  Static generators are making a come back because of
+all the security vulnerabilities in software such as WordPress and having to
+maintain a database sever.  If you take a look at my blog I don't even post
+more than once a month so I really don't need a complicated dynamic website.
+Enjoy the new site and drop me an email to let me know what you think 
+rovitotv AT gmail dot com.  &lt;/p&gt;</content></entry><entry><title>rovitotv.org domain is running again....</title><link href="/rovitotvorg-domain-is-running-again.html" rel="alternate"></link><published>2015-09-16T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-09-16:/rovitotvorg-domain-is-running-again.html</id><summary type="html">&lt;p&gt;Re-location so the site is running again&lt;/p&gt;</summary><content type="html">&lt;p&gt;The rovitotv.org domain was down for a few months while the family and I moved.
+Now that the move is completed and things have calmed down a little I have had
+time to setup the Raspberry Pi and get the blog up and going.  Hopefully I can
+post again more frequently in the near future.&lt;/p&gt;</content></entry><entry><title>Getting Ready for the USAF Maker Fest</title><link href="/getting-ready-for-the-usaf-maker-fest.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/getting-ready-for-the-usaf-maker-fest.html</id><summary type="html">&lt;p&gt;Elijah and I went to Tec^Edge and particpated in the Maker Fest&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am super excited for the USAF Maker Fest.  Going to show off my Raspberry Pi
 with web server/email server.  The directions are found on
 &lt;a href="https://github.com/rovitotv/DigitalFreedomWithRaspberryPI"&gt;GitHub&lt;/a&gt;.  Here is a
 picture of the front door.&lt;/p&gt;

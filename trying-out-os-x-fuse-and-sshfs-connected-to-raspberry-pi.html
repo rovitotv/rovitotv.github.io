@@ -56,23 +56,23 @@ alternative that I wanted to investigate was
 remote file system with no additional software on the server side except for
 standard ssh.  After the remote file system is mounted Sublime Text can be
 used to edit files or do any other standard file command from the shell as
-if the file system were local.  </p>
+if the file system were local.</p>
 <p>This is a little confusing but SSHFS is designed to use <a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace">FUSE which stands for
 Filesystem In Userspace</a>.
 FUSE basically allows non-privileged users create their own file systems
 without messing with the kernel.  I have heard of people using it to access
-NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE. </p>
+NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE.</p>
 <p>So what do you have to install on OS X to get this to work. First off I am
 running on 10.11.3 OS X El Capitan the latest at the time of writing this post.</p>
 <ol>
 <li>Install <a href="http://osxfuse.github.io">OS X Fuse</a> they have a nice installer
 of the stable release.  For added flexibility I would install the Mac Fuse
 compatibility layer as you will be able to support more file systems.  This
-is not needed if you just want to use SSHFS.  </li>
+is not needed if you just want to use SSHFS.</li>
 <li>Install <a href="http://osxfuse.github.io">SSHFS</a> they have a nice installer of the
 stable release.</li>
 <li>A reboot is recommended.</li>
-<li>To mount a file system you use the command "sshfs" from the OS X terminal 
+<li>To mount a file system you use the command "sshfs" from the OS X terminal
 which is similar to the standard mount command:</li>
 </ol>
 <div class="highlight"><pre><span></span>sshfs pi@192.168.1.9:/ ~/temp/pi/
@@ -80,7 +80,7 @@ which is similar to the standard mount command:</li>
 
 
 <p>Then if you perform a <code>df -h</code> command you will notice that a new file system
-is mounted.  </p>
+is mounted.</p>
 <div class="highlight"><pre><span></span>Todds-MacBook-Pro:pi rovitotv$ df -h
 Filesystem         Size   Used  Avail Capacity   iused     ifree %iused  Mounted on
 /dev/disk1        <span class="m">1</span>.8Ti  810Gi  <span class="m">1</span>.0Ti    <span class="m">44</span>% <span class="m">212471929</span> <span class="m">275606053</span>   <span class="m">44</span>%   /
@@ -93,7 +93,7 @@ pi@192.168.1.9:/   13Gi  <span class="m">4</span>.2Gi  <span class="m">8</span>.
 
 <p>Once a remote file system is mounted you can use the finder or the terminal
 as normal and all commands that occur from /Users/rovitotv/temp/pi happen
-on the Raspberry Pi.  Performance seems to be decent even over wi-fi. </p>
+on the Raspberry Pi.  Performance seems to be decent even over wi-fi.</p>
 <p>After all your work is completed you can unmount the volume with the command:</p>
 <div class="highlight"><pre><span></span>umount /Users/rovitotv/temp/pi
 </pre></div>

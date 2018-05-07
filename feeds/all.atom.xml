@@ -391,23 +391,23 @@ alternative that I wanted to investigate was
 remote file system with no additional software on the server side except for
 standard ssh.  After the remote file system is mounted Sublime Text can be
 used to edit files or do any other standard file command from the shell as
-if the file system were local.  &lt;/p&gt;
+if the file system were local.&lt;/p&gt;
 &lt;p&gt;This is a little confusing but SSHFS is designed to use &lt;a href="https://en.wikipedia.org/wiki/Filesystem_in_Userspace"&gt;FUSE which stands for
 Filesystem In Userspace&lt;/a&gt;.
 FUSE basically allows non-privileged users create their own file systems
 without messing with the kernel.  I have heard of people using it to access
-NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE. &lt;/p&gt;
+NTFS hard disks in the past as well.  SSHFS is a "plugin" for FUSE.&lt;/p&gt;
 &lt;p&gt;So what do you have to install on OS X to get this to work. First off I am
 running on 10.11.3 OS X El Capitan the latest at the time of writing this post.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Install &lt;a href="http://osxfuse.github.io"&gt;OS X Fuse&lt;/a&gt; they have a nice installer
 of the stable release.  For added flexibility I would install the Mac Fuse
 compatibility layer as you will be able to support more file systems.  This
-is not needed if you just want to use SSHFS.  &lt;/li&gt;
+is not needed if you just want to use SSHFS.&lt;/li&gt;
 &lt;li&gt;Install &lt;a href="http://osxfuse.github.io"&gt;SSHFS&lt;/a&gt; they have a nice installer of the
 stable release.&lt;/li&gt;
 &lt;li&gt;A reboot is recommended.&lt;/li&gt;
-&lt;li&gt;To mount a file system you use the command "sshfs" from the OS X terminal 
+&lt;li&gt;To mount a file system you use the command "sshfs" from the OS X terminal
 which is similar to the standard mount command:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sshfs pi@192.168.1.9:/ ~/temp/pi/
@@ -415,7 +415,7 @@ which is similar to the standard mount command:&lt;/li&gt;
 
 
 &lt;p&gt;Then if you perform a &lt;code&gt;df -h&lt;/code&gt; command you will notice that a new file system
-is mounted.  &lt;/p&gt;
+is mounted.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Todds-MacBook-Pro:pi rovitotv$ df -h
 Filesystem         Size   Used  Avail Capacity   iused     ifree %iused  Mounted on
 /dev/disk1        &lt;span class="m"&gt;1&lt;/span&gt;.8Ti  810Gi  &lt;span class="m"&gt;1&lt;/span&gt;.0Ti    &lt;span class="m"&gt;44&lt;/span&gt;% &lt;span class="m"&gt;212471929&lt;/span&gt; &lt;span class="m"&gt;275606053&lt;/span&gt;   &lt;span class="m"&gt;44&lt;/span&gt;%   /
@@ -428,7 +428,7 @@ pi@192.168.1.9:/   13Gi  &lt;span class="m"&gt;4&lt;/span&gt;.2Gi  &lt;span clas
 
 &lt;p&gt;Once a remote file system is mounted you can use the finder or the terminal
 as normal and all commands that occur from /Users/rovitotv/temp/pi happen
-on the Raspberry Pi.  Performance seems to be decent even over wi-fi. &lt;/p&gt;
+on the Raspberry Pi.  Performance seems to be decent even over wi-fi.&lt;/p&gt;
 &lt;p&gt;After all your work is completed you can unmount the volume with the command:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;umount /Users/rovitotv/temp/pi
 &lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>2015 - 2016 First Lego League District Results for The Lego Creepers</title><link href="/2015-2016-first-lego-league-district-results-for-the-lego-creepers.html" rel="alternate"></link><published>2016-01-16T22:06:00-05:00</published><updated>2016-01-16T22:06:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2016-01-16:/2015-2016-first-lego-league-district-results-for-the-lego-creepers.html</id><summary type="html">&lt;p&gt;Lego Creepers 2015 - 2016 First Lego League District Results at&lt;/p&gt;</summary><content type="html">&lt;p&gt;Sinclair Community College.&lt;/p&gt;
@@ -447,7 +447,18 @@ by qualifying for districts as a a rookie team.&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1spb1iQeFO2QOabGToR4UcezRAqWEJyif"&gt;Project&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1KUMc1TdAqOxh46-H2NLjA86-gx6vUgQu"&gt;Core Values&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1TKPS5RAMPY1Doko4RoguRF93VunFXAA0"&gt;Robot Design&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content></entry><entry><title>Eli Created a Lego Raspberry PI Case for New Raspberry PI 2</title><link href="/eli-created-a-lego-raspberry-pi-case-for-new-raspberry-pi-2.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/eli-created-a-lego-raspberry-pi-case-for-new-raspberry-pi-2.html</id><summary type="html">&lt;p&gt;Eli created a inexpensive case for the raspberry PI 2 from Lego&lt;/p&gt;</summary><content type="html">&lt;p&gt;Save some money, build your Raspberry Pi case out of Legos.  Even better have
+&lt;/ul&gt;</content></entry><entry><title>rovitotv.org Now Powered By Pelican a Static Web Generator in Python</title><link href="/rovitotvorg-now-powered-by-pelican-a-static-web-generator-in-python.html" rel="alternate"></link><published>2016-01-02T12:00:00-05:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2016-01-02:/rovitotvorg-now-powered-by-pelican-a-static-web-generator-in-python.html</id><summary type="html">&lt;p&gt;Big changes at rovitotv.org which is now powered by Pelican&lt;/p&gt;</summary><content type="html">&lt;p&gt;Over the holiday break I switched the blog from WordPress on the Raspberry PI
+2 to using Pelican.  Pelican is written in Python and is a static web 
+generator, this means it takes static text files and automatically converts
+those pages to HTML.  Static generators are making a come back because of
+all the security vulnerabilities in software such as WordPress and having to
+maintain a database sever.  If you take a look at my blog I don't even post
+more than once a month so I really don't need a complicated dynamic website.
+Enjoy the new site and drop me an email to let me know what you think 
+rovitotv AT gmail dot com.  &lt;/p&gt;</content></entry><entry><title>rovitotv.org domain is running again....</title><link href="/rovitotvorg-domain-is-running-again.html" rel="alternate"></link><published>2015-09-16T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-09-16:/rovitotvorg-domain-is-running-again.html</id><summary type="html">&lt;p&gt;Re-location so the site is running again&lt;/p&gt;</summary><content type="html">&lt;p&gt;The rovitotv.org domain was down for a few months while the family and I moved.
+Now that the move is completed and things have calmed down a little I have had
+time to setup the Raspberry Pi and get the blog up and going.  Hopefully I can
+post again more frequently in the near future.&lt;/p&gt;</content></entry><entry><title>Eli Created a Lego Raspberry PI Case for New Raspberry PI 2</title><link href="/eli-created-a-lego-raspberry-pi-case-for-new-raspberry-pi-2.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/eli-created-a-lego-raspberry-pi-case-for-new-raspberry-pi-2.html</id><summary type="html">&lt;p&gt;Eli created a inexpensive case for the raspberry PI 2 from Lego&lt;/p&gt;</summary><content type="html">&lt;p&gt;Save some money, build your Raspberry Pi case out of Legos.  Even better have
 your kid build the case for you.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Photo" src="https://drive.google.com/uc?id=1LzyXW65oE1CtT572hHjr18eKHKOvfutr"&gt;&lt;/p&gt;</content></entry><entry><title>Getting Ready for the USAF Maker Fest</title><link href="/getting-ready-for-the-usaf-maker-fest.html" rel="alternate"></link><published>2015-03-13T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2015-03-13:/getting-ready-for-the-usaf-maker-fest.html</id><summary type="html">&lt;p&gt;Elijah and I went to Tec^Edge and particpated in the Maker Fest&lt;/p&gt;</summary><content type="html">&lt;p&gt;I am super excited for the USAF Maker Fest.  Going to show off my Raspberry Pi
 with web server/email server.  The directions are found on
@@ -468,10 +479,65 @@ right in front of them.  Ironically in one case a fish did bite the worm and
 took the half with out the hook.  Another fish took the worm and the hook but
 the hook came off the line and the fish got away.  It was catch and release
 anyway.  The boys had a great time.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Photo" src="https://drive.google.com/uc?id=1pQaXEt-HNczE3EFf41vVmrUYForPsUAo"&gt;&lt;/p&gt;</content></entry><entry><title>Hello World!</title><link href="/hello-world.html" rel="alternate"></link><published>2014-06-08T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2014-06-08:/hello-world.html</id><summary type="html">&lt;p&gt;Hello World from the Raspberry Pi&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to rovitotv's world.  rovitotv = Todd V. Rovito.  It is my Unix username
+&lt;p&gt;&lt;img alt="Photo" src="https://drive.google.com/uc?id=1pQaXEt-HNczE3EFf41vVmrUYForPsUAo"&gt;&lt;/p&gt;</content></entry><entry><title>Rovitotv and Elijah Meet Marvin Lewis</title><link href="/rovitotv-and-elijah-meet-marvin-lewis.html" rel="alternate"></link><published>2014-06-10T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2014-06-10:/rovitotv-and-elijah-meet-marvin-lewis.html</id><summary type="html">&lt;p&gt;Rovitotv and Elijah Meet Marvin Lewis&lt;/p&gt;</summary><content type="html">&lt;p&gt;Being from Cincinnati I am a huge Cincinnati Bengals fan.  No matter how the
+team performs I am cheering for them usually watching all the games.  Tonight I
+got to meet Coach Marvin Lewis because Elijah has been working hard in school
+and got on the honor roll.  Coach Lewis runs the &lt;a href="http://www.marvinlewis.org/LearningisCool.aspx"&gt;Marvin Lewis Learning is Cool
+program&lt;/a&gt; so we got free tickets
+to the Zoo and coupons with Gold Star.  While we were at the Zoo we stood in 
+line and got to meet Coach Lewis and get this great picture:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/RovitotvAndElijahMeetMarvinLewis/photo_scaled_423x303.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Thanks Coach Lewis!!!! It is incredible that you sponsor such a cool event and encourage kids to do well in school.&lt;/p&gt;</content></entry><entry><title>Hello World!</title><link href="/hello-world.html" rel="alternate"></link><published>2014-06-08T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2014-06-08:/hello-world.html</id><summary type="html">&lt;p&gt;Hello World from the Raspberry Pi&lt;/p&gt;</summary><content type="html">&lt;p&gt;Welcome to rovitotv's world.  rovitotv = Todd V. Rovito.  It is my Unix username
 and has been for a long time.  I am moving my web site from Google Apps to my
 own web server so give me some time to move content over. My web site is powered
-by the Raspberry PI an amazing computer for $40.&lt;/p&gt;</content></entry><entry><title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title><link href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/electro-optical-synthetic-civilian-vehicle-data-domes.html</id><summary type="html">&lt;p&gt;Abstract: This paper will look at using open source tools (Blender, LuxRender,
+by the Raspberry PI an amazing computer for $40.&lt;/p&gt;</content></entry><entry><title>Speedy Air Powered Pinewood Derby Car</title><link href="/speedy-air-powered-pinewood-derby-car.html" rel="alternate"></link><published>2013-02-11T12:00:00-05:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2013-02-11:/speedy-air-powered-pinewood-derby-car.html</id><summary type="html">&lt;p&gt;How to make a RC air powered pinewood derby car&lt;/p&gt;</summary><content type="html">&lt;p&gt;For the last two years my Son has been involved in Cub Scouts and Pack 19 in
+Middletown Ohio puts on a heck of a Pinewood Derby. Pack 19 allows leaders and
+parents to build their own cars with the hope that it will distract the parents
+and let the Cub Scouts build their own car. This policy works!!!!! I am one of
+those Dad’s that obsesses over the Pinewood Derby race. For the 2012 race which
+was my Son’s first year I generated a good idea to create an air powered car
+that was to use a rubber band but I didn’t have time to complete it. The 2013
+Derby was the debut year of the Speedy Air Powered Pinewood Derby Car!!!! Design
+changes were made after speaking with a few engineers at AFRL over lunch. The
+use of radio controlled (RC) parts made this project possible and fairly easy to
+construct.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/SpeedyAirPoweredPinewoodDerbyCar/pinewoodderbycarconstruction-225x300.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;In the picture above you can see the car being constructed. We used the
+following parts:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Two blocks of pinewood from the standard kit. One block was the car body and the other block was used to build an motor mount&lt;/li&gt;
+&lt;li&gt;R/C Speed Controller&lt;/li&gt;
+&lt;li&gt;R/C Receiver&lt;/li&gt;
+&lt;li&gt;R/C Motor&lt;/li&gt;
+&lt;li&gt;Not shown in the picture above battery&lt;/li&gt;
+&lt;li&gt;Spektrum DX6i transmitter&lt;/li&gt;
+&lt;li&gt;3 inch 2/3 propeller (buy a bunch of these because a few of these will be broken during testing and construction)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After construction and a few test runs and tweaking the car is shown in the
+picture below in its transportation box:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/SpeedyAirPoweredPinewoodDerbyCar/pinewoodderbycarinbox.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Yes I used rubber bands to hold the car together. This is a bad idea especially
+for our track which doesn’t have the best stop mechanism. A few times during the
+race I had to realign the parts and apply the rubber bands again. Below is a
+picture of all the cars before the start of the race, the Speedy Air Powered
+Pinewood Derby car is in the front right of the picture. I was really worried
+about the bunny car because it looked fast.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/SpeedyAirPoweredPinewoodDerbyCar/pinewoodderbycompetition.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Not shown on the table above another powered car made a appearance at the race
+(below) but this Dad had solder problems so we didn’t get to race until the end.
+Please take note I am not the only parent obsessed with the Pinewood Derby.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Photo" src="{attach}/MediaFiles/SpeedyAirPoweredPinewoodDerbyCar/pinewoodderbycompetitionanotherpoweredcar.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Below are some bad movies. It was difficult to control the throttle and take
+movies on my iPhone at the same time. Needless to say this car was very fast. I
+rarely had to apply much throttle to win. The car weighed in at exactly 5 oz and
+was the exact size and dimensions as required. It was fun to build and even more
+fun to race. Thanks to all the people that pitched in I couldn’t of done it
+without your help and encouragement!&lt;/p&gt;
+&lt;p&gt;Links to vidoes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/SpeedyAirPoweredPinewoodDerbyCar/MovieRacing.MOV"&gt;Movie Racing Large video file 32 MB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/SpeedyAirPoweredPinewoodDerbyCar/PinewoodDerby2013UpTheTrack.m4v"&gt;Pinewood Derby 2013 Up the Track 3.2 MB&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title><link href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/electro-optical-synthetic-civilian-vehicle-data-domes.html</id><summary type="html">&lt;p&gt;Abstract: This paper will look at using open source tools (Blender, LuxRender,
 and Python) to generate a large data set to be used to train an object
 recognition system. The model produces camera position, camera attitude, and
 synthetic camera data that can be used for exploitation purposes. We focus on …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: This paper will look at using open source tools (Blender, LuxRender,
@@ -537,6 +603,29 @@ there is!&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Photo" src="https://drive.google.com/uc?id=17HzGttScoIvK2822ncubo-K2zfFvtZqc"&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1ZEnM4LLDWQFvOm2i9f6c6WvGuRjVNny6"&gt;Scanned in article about Noodles&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>SIFT Vehicle Recognition with Semi-Synthetic Model Database</title><link href="/sift-vehicle-recognition-with-semi-synthetic-model-database.html" rel="alternate"></link><published>2012-04-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-04-01:/sift-vehicle-recognition-with-semi-synthetic-model-database.html</id><summary type="html">&lt;p&gt;Object recognition with a semi-synthetic model database&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract – Object recognition is an important problem that has many applications
+that are of interest to the United States Air Force (USAF). Recently the USAF
+released its update to Technology Horizons, a report that is designed to guide
+the science and technology direction of the Air Force. Technology Horizons
+specifically calls out for the need to use autonomous systems in essentially all
+aspects of Air Force operations [1]. Object recognition is a key enabler to
+autonomous exploitation of intelligence, surveillance, and reconnaissance (ISR)
+data which might make the automatic searching of millions of hours of video
+practical. In particular this paper focuses on vehicle recognition with Lowe’s
+Scale-invariant feature transform (SIFT) using a model database that was
+generated with semi-synthetic data. To create the model database we used a
+desktop laser scanner to create a high resolution 3D facet model. Then the 3D
+facet model was imported into LuxRender, a physics accurate ray tracing tool,
+and several views were rendered to create a model database. SIFT was selected
+because the algorithm is invariant to scale, noise, and illumination making it
+possible to create a model database of only a hundred original viewing locations
+which keeps the size of the model database reasonable.&lt;/p&gt;
+&lt;p&gt;After a few years of other work this is my re-entry back into pattern
+recognition.&lt;/p&gt;
+&lt;p&gt;Links to paper and presentation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/SIFTVehicleRecognitionWithSemiSyntheticModelDatabase/PaperSIFT_VehicleRec_With_Semi-Synth_Model_Database_Color.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="{filename}/MediaFiles/SIFTVehicleRecognitionWithSemiSyntheticModelDatabase/PresentationObject_Rec_With_Synth_Model_Database_SPIE.pdf"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model version 2 for ATR Center</title><link href="/physics-accurate-layered-sensing-model-version-2-for-atr-center.html" rel="alternate"></link><published>2011-08-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-08-01:/physics-accurate-layered-sensing-model-version-2-for-atr-center.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software version 2&lt;/p&gt;</summary><content type="html">&lt;p&gt;The main focus of this project was to provide an architecture for layered
 sensing simulation. It is modular in design and constructed on open-source-off-
 the-shelf-software (Blender, LuxRender, Python, OpenCV, and SUMO).&lt;/p&gt;
