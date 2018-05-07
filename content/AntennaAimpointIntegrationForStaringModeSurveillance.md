@@ -25,7 +25,7 @@ simple and should be easily adaptable to any operating system and hardware.
 
 Links to paper, presentation, and code:
 
-* [Inexpensive Air To Ground Data Link](https://www.dropbox.com/s/zbxw02x2j7yzai5/InexpensiveAirToGroundDataLink.pdf?dl=0)
-* [Paper](https://www.dropbox.com/s/1tivpkvam69miua/Paper.pdf?dl=0)
-* [Plane Point Public Released Code](https://www.dropbox.com/s/che9wxx4v90hkzr/PlanePointPublicReleasedCode.zip?dl=0)
+* [Inexpensive Air To Ground Data Link Presentation](https://drive.google.com/uc?id=1fJwk4RL6R2GIBNObt7Hh85a6j_kHy9IT)
+* [Paper](https://drive.google.com/uc?id=1jcSl4LCTjcYYHJ9R3n7b3SUf71SapAkH)
+* [Plane Point Public Released Code](https://drive.google.com/uc?id=1-1mJSYSfSbHq-yQ71KyTF5fKoE7b4Anj)
 
