@@ -32,7 +32,7 @@ deep learning algorithm when real image training data are augmented with the
 simulated images.&lt;/p&gt;
 &lt;p&gt;Links to paper:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.dropbox.com/s/7usmxgawfrpxfat/2017SPIEPaperDraft.pdf?dl=0"&gt;Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1bWDcVBb0iuzpS0dbm4V-j5dbH_fE0lU-"&gt;Paper&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Electro-Optical Synthetic Civilian Vehicle Data Domes</title><link href="/electro-optical-synthetic-civilian-vehicle-data-domes.html" rel="alternate"></link><published>2012-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2012-07-01:/electro-optical-synthetic-civilian-vehicle-data-domes.html</id><summary type="html">&lt;p&gt;Abstract—This paper will look at using open source tools (Blender, LuxRender,
 and Python) to generate a large data set to be used to train an object
 recognition system. The model produces camera position, camera attitude, and
