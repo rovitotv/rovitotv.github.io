@@ -547,12 +547,12 @@ increase their knowledge and experience with Linux, Python, Ray Tracing, and Geo
 Projections.&lt;/p&gt;
 &lt;p&gt;Links to presentation and video:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/ATR_Workshop.pdf"&gt;Paper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/Building.mp4"&gt;Building video&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/MedFlyer.mp4"&gt;Medium flyer video&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/MultiCar.mp4"&gt;Multi-car video&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/Sadr_City_in Blender.mp4"&gt;Sadr City in Blender video&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="{filename}/MediaFiles/PhysicsAccurateLayeredSensingModel2/PursuerWith5Streams.mp4"&gt;Pursuer with five streams video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1HG_FN2I4ETFxlyahPLL5DWWipSl7VqwB"&gt;Presentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1p64E5D1y_ijtSYFIUVs4AVb9nUTOyBEo"&gt;Building video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1254f2wC7PSu-TyHfq9xI9-hOwlPcU2H6"&gt;Medium flyer video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1qhYLMPl31a27Hzyhh4aePp9WU6zXZ8ut"&gt;Multi-car video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=10GukqBZk0nSkqJmtlE8J3oA-dcjD5ObK"&gt;Sadr City in Blender video&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://drive.google.com/uc?id=1CvdEVTdSSPX_g5mPI-o6rnfos-L7wFtn"&gt;Pursuer with five streams video&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content></entry><entry><title>Physics Accurate Layered Sensing Model</title><link href="/physics-accurate-layered-sensing-model.html" rel="alternate"></link><published>2011-07-01T12:00:00-04:00</published><updated>2015-12-25T12:00:00-05:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2011-07-01:/physics-accurate-layered-sensing-model.html</id><summary type="html">&lt;p&gt;Learn how to build a layered sensing model with open source software&lt;/p&gt;</summary><content type="html">&lt;p&gt;Abstract: This paper will look at using open source tools (Blender [1],
 LuxRender [2], Open CV [3], SUMO [4], and Python [5]) to build an image
 processing model for exploring combinations of sensors/platforms for any given
