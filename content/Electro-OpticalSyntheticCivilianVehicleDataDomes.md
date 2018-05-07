@@ -4,7 +4,7 @@ Modified: 2015-12-25 12:00
 Category: Research
 Authors: Todd V. Rovito
 
-Abstract—This paper will look at using open source tools (Blender, LuxRender,
+Abstract: This paper will look at using open source tools (Blender, LuxRender,
 and Python) to generate a large data set to be used to train an object
 recognition system. The model produces camera position, camera attitude, and
 synthetic camera data that can be used for exploitation purposes. We focus on
@@ -20,8 +20,9 @@ algorithms.
 
 Links to paper, presentation, and videos:
 
-* [Paper](https://www.dropbox.com/s/zdd0knt5dgtu65g/EOSynthDataDomes_submitted_to_PR_paper.pdf?dl=0)
-* [Presentation](https://www.dropbox.com/s/aqe0aunepjy2r99/EODataDomesForPR_presentation.pdf?dl=0)
-* [Video showing light conditions](https://www.dropbox.com/s/6kk86echrw5fkja/light.avi?dl=0)
-* [Video showing positions](https://www.dropbox.com/s/36c4ohv95fso6hc/pos.avi?dl=0)
+* [Paper](https://drive.google.com/uc?id=1xd8LjM_iJUMLM0Cq8ZTYbsbsYjrp9Lq_)
+* [Presentation](https://drive.google.com/uc?id=1aZg3AL258UMy6o18o2iNkd_yvBvG8j-I)
+* [Video showing light conditions](https://drive.google.com/uc?id=1BaDFeUhiOoxY6vKNd8CUvsUpdMJ7j74x)
+* [Video showing positions](https://drive.google.com/uc?id=1tYmoKI2f4L34fEPD14ARx0XHCL2Xyakf)
+
 
