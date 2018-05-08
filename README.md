@@ -47,6 +47,11 @@ To rotate a image us the convert command line:
 convert ESColorGuard_scaled.jpeg -rotate 180 ESColorGuard_scaled_rotated.jpeg
 ```
 
+## rovitotv.org and www.rovitotv.org pointed to rovitotv.github.io
+
+I went into ISP and setup alias DNS records for rovitotv.org and wwww.rovitotv.org,
+now everything points to rovitotv.github.io.  
+
 ## References
 
 I followed [this blog post](https://rsip22.github.io/blog/create-a-blog-with-pelican-and-github-pages.html)
