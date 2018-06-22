@@ -1,4 +1,4 @@
-Title: rovitotv.org is switching to github pages
+Title: The exofrills text editor
 Date: 2018-05-15 12:00
 Modified: 2018-05-15 12:00
 Category: Computing
