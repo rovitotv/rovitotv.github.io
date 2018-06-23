@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>rovitotv's blog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-05-04T12:00:00-04:00</updated><entry><title>rovitotv.org is switching to github pages</title><link href="/rovitotvorg-is-switching-to-github-pages.html" rel="alternate"></link><published>2018-05-04T12:00:00-04:00</published><updated>2018-05-04T12:00:00-04:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-05-04:/rovitotvorg-is-switching-to-github-pages.html</id><summary type="html">&lt;p&gt;Major updates at rovitotv.org, switching to github pages&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have been running rovitotv.org blog on a Rapberry Pi for
+<feed xmlns="http://www.w3.org/2005/Atom"><title>rovitotv's blog</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2018-06-23T06:55:00-04:00</updated><entry><title>The exofrills text editor</title><link href="/the-exofrills-text-editor.html" rel="alternate"></link><published>2018-06-23T06:51:00-04:00</published><updated>2018-06-23T06:55:00-04:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-06-23:/the-exofrills-text-editor.html</id><summary type="html">&lt;p&gt;Using exofrills text editor created with Python&lt;/p&gt;</summary><content type="html">&lt;p&gt;My favorite programming language has been Python for a long time.
+Nothing better than using a text editor written with your favorite
+programming language, which is what exofrills (aka xo) is.
+&lt;a href="http://exofrills.org"&gt;As the web site states&lt;/a&gt; "exofrills - when
+nano is too much".  "xo" is the command line name of exofrills
+and it is almost as short as the 13 keys used in the text editor.
+I am most often in the shell so a editor that works in the shell
+with ssh is critical for me and that is what "xo" does, no x11
+forwarding or sshfs.  All I need is xo!!!  xo is a little over
+1,000 lines of code and uses the urwid Python module for terminal
+support.  exofrills now use pygments-cache for much improved loading
+of text files, now xo is almost instantaneous.  Check it out when
+you get the chance.&lt;/p&gt;</content></entry><entry><title>rovitotv.org is switching to github pages</title><link href="/rovitotvorg-is-switching-to-github-pages.html" rel="alternate"></link><published>2018-05-04T12:00:00-04:00</published><updated>2018-05-04T12:00:00-04:00</updated><author><name>Todd V. Rovito</name></author><id>tag:None,2018-05-04:/rovitotvorg-is-switching-to-github-pages.html</id><summary type="html">&lt;p&gt;Major updates at rovitotv.org, switching to github pages&lt;/p&gt;</summary><content type="html">&lt;p&gt;I have been running rovitotv.org blog on a Rapberry Pi for
 a while and it has been working with no problems.  But I wanted
 to try out github pages and thought moving rovitotv.org would
 allow me to learn github pages.  So over the weekend I moved
