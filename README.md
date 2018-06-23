@@ -23,7 +23,7 @@
     ```
 
     The settings in GitHub might revert back to nothing for the custom
-    domain.
+    domain, the value should be www.rovitotv.org.
 
 ## Python packages that need to be installed on a development computer
 
