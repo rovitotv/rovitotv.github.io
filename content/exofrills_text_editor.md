@@ -1,6 +1,6 @@
 Title: The exofrills text editor
-Date: 2018-05-15 12:00
-Modified: 2018-05-15 12:00
+Date: 2018-06-23 6:51
+Modified: 2018-06-23 6:55
 Category: Computing
 Authors: Todd V. Rovito
 Summary: Using exofrills text editor created with Python
