@@ -17,6 +17,14 @@
     git add -A && git commit -a -m 'commit message' && git push --all
     ```
 
+5.  Finally to publish content use the command:
+    ```bash
+    make github
+    ```
+
+    The settings in GitHub might revert back to nothing for the custom
+    domain.
+
 ## Python packages that need to be installed on a development computer
 
 ```bash
@@ -50,7 +58,7 @@ convert ESColorGuard_scaled.jpeg -rotate 180 ESColorGuard_scaled_rotated.jpeg
 ## rovitotv.org and www.rovitotv.org pointed to rovitotv.github.io
 
 I went into ISP and setup alias DNS records for rovitotv.org and wwww.rovitotv.org,
-now everything points to rovitotv.github.io.  
+now everything points to rovitotv.github.io.
 
 ## References
 
