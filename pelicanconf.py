@@ -35,6 +35,10 @@ DEFAULT_PAGINATION = 10
 
 STATIC_PATHS = ['MediaFiles']
 
+# if you create jupyter files in the content dir, snapshots are saved with the same
+# metadata. These need to be ignored. 
+IGNORE_FILES = [".ipynb_checkpoints"]  
+
 PLUGINS = [
     # ...
     'pelican_youtube',
