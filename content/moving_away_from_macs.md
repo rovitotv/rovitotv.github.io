@@ -1,0 +1,40 @@
+Title: Moving away from Macs
+Date: 2018-12-31 11:51
+Modified: 2018-12-31 11:51
+Category: Computing
+Authors: Todd V. Rovito
+Summary: Running as fast as I can away from Apple's Mac Platform
+
+The last few releases of the Mac Book Pros and even the Mac Mini
+have not impressed me.  I do software development at home
+and work with a preference for Unix based operating systems.  Honestly I don't
+need a tremendous amount of compute power at home.  A small light
+weight computer that runs a decent version of Unix is critical.  The
+first thing I did was check out Chromebooks.  I purchased a Samsung
+Chromebook 3 (model XE500C13-K04US) which has an 11.6" screen, 4 GB of RAM, and
+16 GB eMMC for $189.  This was a great way for me to get started with
+Chrome OS.  I was able to install Crouton on it and get Ubuntu 16.04 with XFCE
+to run.  My only compliant about the computer was the the 16 GB eMMC was small
+so I had to run Crouton from the Micro SD card which works but every time I
+put the computer to sleep and left Crouton running it would cause Ubuntu to
+crash.  This is a known issue when running Crouton on the Micro SD card with
+no known fix.  I ended up giving the computer to my Son then I purchased a 
+Samsung Chromebook Pro (model XE510C24-K04US) which has a 12.3" touch screen,
+4 GB of RAM, 64 GB eMMC, and Intel Core M3 for $479.99.  You get a tremendous
+value out of a Chromebook, maybe not the fastest computer.  Crouton works great
+on the Samsung Chromebook Pro I run Firefox, Libre Office, Anaconda Python, and
+other Linux applications without any trouble.  Crouton sets up a "chroot"
+environment which requires root privileges so the Chromebook has to be placed
+into developer mode.  Google has a new approach to running Linux applications
+called Crostini which the Samsung Chromebook Pro does not support.  Crostini
+does not require the Chromebook be in developer mode which makes the Chromebook
+more secure.  If I were going to buy a Chromebook today I would find one with 
+Crostini support.  A Chromebook with a Intel CPU is also recommended because 
+of the large number of pre-compiled Linux software packages.  The other
+huge advantage the Samsung Chromebook Pro has is the computer is a 2-in-1 which
+means the screen flips around and it can become a tablet.  So this computer can
+be placed on my desktop hooked to a external display (via USB C) and keyboard and
+mouse then very quickly it can be disconnected and transformed into a tablet. 
+If you are looking for a new computer to perform some software development on
+and don't want to pay a small fortune for the hardware check out Chromebooks
+with Crouton or Crostini.  
