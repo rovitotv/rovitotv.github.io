@@ -57,7 +57,7 @@ convert ESColorGuard_scaled.jpeg -rotate 180 ESColorGuard_scaled_rotated.jpeg
 
 ## rovitotv.org and www.rovitotv.org pointed to rovitotv.github.io
 
-I went into ISP and setup alias DNS records for rovitotv.org and wwww.rovitotv.org,
+I went into ISP and setup alias DNS records for rovitotv.org and www.rovitotv.org,
 now everything points to rovitotv.github.io.
 
 ## References
